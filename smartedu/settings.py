@@ -42,9 +42,15 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'crispy_forms',
     'widget_tweaks',
+    'bootstrap4',
+    # my app portal
     'app_users',
     'classroom',
-    'bootstrap4',
+    'module',
+    'page',
+    'quiz',
+    'assignment',
+    'completion',
 ]
 
 MIDDLEWARE = [

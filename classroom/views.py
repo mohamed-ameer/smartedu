@@ -86,7 +86,10 @@ def CourseDetail(request, course_id):
 
 	return render(request, 'classroom/course.html', context)
 
-
+# test
+def Course(request):
+	return render(request, 'classroom/course.html')
+# ##########
 
 @login_required
 def Enroll(request, course_id):
