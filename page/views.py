@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-
+from django.views.generic import (TemplateView, DetailView,
+                                    ListView, CreateView,
+                                    UpdateView,DeleteView,FormView,)
 from page.models import Page, PostFileContent
 from classroom.models import Course
 from module.models import Module
 from completion.models import Completion
 
-from page.forms import NewPageForm
+from page.forms import NewPageForm,CommentForm,ReplyForm
 
 # Create your views here.
 
@@ -26,6 +28,7 @@ def NewPageModule(request, course_id, module_id):
 			form = NewPageForm(request.POST, request.FILES)
 			if form.is_valid():
 				title = form.cleaned_data.get('title')
+				video_url = form.cleaned_data.get('video_url')
 				files = request.FILES.getlist('files')
 
 				for file in files:
@@ -33,7 +36,7 @@ def NewPageModule(request, course_id, module_id):
 					file_instance.save()
 					files_objs.append(file_instance)
 
-				p = Page.objects.create(title=title, user=user)
+				p = Page.objects.create(title=title,video_url=video_url, user=user)
 				p.files.set(files_objs)
 				p.save()
 				module.pages.add(p)
