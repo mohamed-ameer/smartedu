@@ -29,3 +29,17 @@ upload to github
 1-git add .
 2-git commit -m "add"
 3-git push
+==================================================
+django cannot find pillow
+pip install --force-reinstall Pillow
+==================================================
+Django - makemigrations - No changes detected
+Method : 1
+
+Step : 1
+
+Make sure your app must be included in INSTALLED_APPS in settings.py
+
+Stpe : 2
+
+python manage.py makemigrations <appname>

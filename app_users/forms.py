@@ -20,14 +20,14 @@ class UserForm(UserCreationForm):
         }
 
 class UserProfileInfoForm(forms.ModelForm):
-    # teacher = 'teacher'
-    # student = 'student'
-    # user_types = [
-    #     (student, 'student'),
-    #     (teacher, 'teacher'),
-    # ]
-    # user_type = forms.ChoiceField(required=True, choices=user_types)
-    # # user_type = forms.CheckboxInput(required=True, choices=user_types)
+    teacher = 'teacher'
+    student = 'student'
+    user_types = [
+        (student, 'student'),
+        (teacher, 'teacher'),
+    ]
+    user_type = forms.ChoiceField(required=True, choices=user_types)
+    # user_type = forms.CheckboxInput(required=True, choices=user_types)
 
     class Meta():
         model = Profile

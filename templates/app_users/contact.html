@@ -25,9 +25,7 @@
                   <form method="post" class="form">
                     <div class="form-group">
                       {% csrf_token %}
-                      {% bootstrap_form form %}
-                      {% buttons %}
-                      {% endbuttons %}
+                      {{form|crispy}}
                       <input type="submit" value="Submit Response" class="btn btn-primary text-white btn-lg btn-block">
                     </div>
                   </form>
