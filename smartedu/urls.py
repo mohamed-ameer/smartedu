@@ -22,7 +22,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', include('app_users.urls')),
+    path('home/', include('app_users.urls')),
     path('course/', include('classroom.urls')),
+    path('videochat/', include('videochat.urls')),
+    path('', include('base.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

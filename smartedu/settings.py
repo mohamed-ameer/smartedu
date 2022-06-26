@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'quiz',
     'assignment',
     'completion',
+    'videochat',
+    'base',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
