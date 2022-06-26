@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 # Create your models here.
 class Room(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='room_owner')
     name = models.CharField(max_length=255,unique=True)
     slug = models.SlugField(null=True, blank=True)
     def __str__(self):
@@ -20,3 +21,5 @@ class Message(models.Model):
 
     class Meta:
         ordering=('date_added',)
+
+        
