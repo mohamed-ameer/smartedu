@@ -146,6 +146,9 @@ nav {
                        <li class="nav-item  mx-3">
                         <a class="nav-link text-muted" href="{% url 'chatzoom'%}">Start Meeting</a>
                        </li>
+                       <li class="nav-item  mx-3">
+                        <a class="nav-link text-muted" href="{% url 'rooms'%}">ChatRooms</a>
+                       </li>
                        {% endif %}
                     </ul>
                     {% if user.is_authenticated %}
@@ -169,7 +172,7 @@ nav {
                                         <a class="text-decoration-none " href="{% url 'profile'%}"> <i class="fa-solid fa-user pe-2"></i>My profile</a>
                                     </li>
                                     <li class="nav-item  mx-3">
-                                        <a class="  text-decoration-none text-danger" href="{% url 'user_logout'%}">Log Out</a>
+                                        <a class="  text-decoration-none text-danger" href="{% url 'user_logout'%}"><i class="fa-solid fa-right-from-bracket"></i>  Log Out</a>
                                     </li>
                                     
                                 </ul>

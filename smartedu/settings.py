@@ -51,8 +51,11 @@ INSTALLED_APPS = [
     'quiz',
     'assignment',
     'completion',
+    # chat apps
     'videochat',
     'base',
+    'channels',
+    'room',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -85,8 +88,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'smartedu.wsgi.application'
-
-
+ASGI_APPLICATION = 'smartedu.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
