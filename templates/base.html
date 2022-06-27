@@ -142,6 +142,11 @@ nav {
                            <a class="nav-link text-muted" href="{% url 'leaderboard'%}">Leaderboard</a>
                        </li>
                        {% endif %}
+                        {% if user.profile.user_type == 'teacher' or user.is_superuser %}                       
+                       <li class="nav-item  mx-3">
+                           <a class="nav-link text-muted" href="{% url 'coursestest'%}" target="_blank">My Courses</a>
+                       </li>
+                       {% endif %}
                        {% if user.profile.user_type == 'student' or user.profile.user_type == 'teacher' or user.is_superuser %}
                        <li class="nav-item  mx-3">
                         <a class="nav-link text-muted" href="{% url 'chatzoom'%}" target="_blank">Start Meeting</a>
