@@ -106,16 +106,6 @@
 
 </div>
 
-<div class="section">
-	<!-- <h4>My courses<a class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">add</i></a></h4> -->
-  <div class="row">
-    <div class="col s3"><h4>My courses</h4></div>
-    <div class="col s8"></div>
-    <div class="col s1"><a href="{% url 'newcourse' %}" class="btn-floating btn-large waves-effect waves-light teal"><i class="material-icons">add</i></a></div>
-  </div>
-  <div class="divider"></div>
-</div>
-
 <div class="row">
 {% for course in courses %}
 <p class="title"><b>{{ courses.count }}</b> Students</p>
