@@ -40,8 +40,8 @@ class Profile(models.Model):
     phone = models.CharField(max_length=15)
     college_id = models.CharField(max_length=20)
     facebook =models.URLField(max_length=200, blank=True)
-    twitter =models.URLField(max_length=200, blank=True)
-    instgram =models.URLField(max_length=200, blank=True)
+    github =models.URLField(max_length=200, blank=True)
+    linkedin =models.URLField(max_length=200, blank=True)
     # teacher = 'teacher'
     # student = 'student'
     # user_types = [

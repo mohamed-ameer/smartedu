@@ -1,7 +1,7 @@
 {% extends 'base/main.html' %}
 {% load static %}
 {% block content %}
-
+{% if user.is_authenticated %}
 <main>
 
     <section id="form-container">
@@ -60,6 +60,6 @@
 
     form.addEventListener('submit', handleSubmit)
 </script>
-
+{% endif %}
 {% endblock content %}
 

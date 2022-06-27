@@ -120,7 +120,6 @@ def EditCourse(request, course_id):
 				course.title = form.cleaned_data.get('title')
 				course.description = form.cleaned_data.get('description')
 				course.category = form.cleaned_data.get('category')
-				course.syllabus = form.cleaned_data.get('syllabus')
 				course.save()
 				return redirect('my-courses')
 		else:
