@@ -133,7 +133,7 @@ nav {
                         </li>
                         {% if user.profile.user_type == 'student' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
-                           <a class="nav-link text-muted" href="{% url 'coursestest'%}" target="_blank">Courses</a>
+                           <a class="nav-link text-muted" href="#" target="_blank">Courses</a>
                        </li>
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'scheduale'%}" target="_blank">Scheduale</a>
@@ -144,7 +144,7 @@ nav {
                        {% endif %}
                         {% if user.profile.user_type == 'teacher' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
-                           <a class="nav-link text-muted" href="{% url 'coursestest'%}" target="_blank">My Courses</a>
+                           <a class="nav-link text-muted" href="{% url 'my-courses'%}" target="_blank">My Courses</a>
                        </li>
                        {% endif %}
                        {% if user.profile.user_type == 'student' or user.profile.user_type == 'teacher' or user.is_superuser %}

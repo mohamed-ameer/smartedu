@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
 from classroom.models import Course, Category,Grade
-
+from app_users.models import *
 from classroom.forms import NewCourseForm
 
 
@@ -57,8 +57,7 @@ def NewCourse(request):
 			title = form.cleaned_data.get('title')
 			description = form.cleaned_data.get('description')
 			category = form.cleaned_data.get('category')
-			syllabus = form.cleaned_data.get('syllabus')
-			Course.objects.create(picture=picture, title=title, description=description, category=category, syllabus=syllabus, user=user)
+			Course.objects.create(picture=picture, title=title, description=description, category=category, user=user)
 			return redirect('my-courses')
 	else:
 		form = NewCourseForm()
@@ -85,11 +84,6 @@ def CourseDetail(request, course_id):
 	}
 
 	return render(request, 'classroom/course.html', context)
-
-# test
-def Course(request):
-	return render(request, 'classroom/course.html')
-# ##########
 
 @login_required
 def Enroll(request, course_id):
@@ -142,10 +136,11 @@ def EditCourse(request, course_id):
 
 def MyCourses(request):
 	user = request.user
+	profile = Profile.objects.get(user=request.user)
 	courses = Course.objects.filter(user=user)
 
 	context = {
-		'courses': courses
+		'courses': courses,'profile': profile
 	}
 
 	return render(request, 'classroom/mycourses.html', context)

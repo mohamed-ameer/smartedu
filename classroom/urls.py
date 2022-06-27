@@ -10,7 +10,6 @@ from assignment.views import NewAssignment, AssignmentDetail, NewSubmission
 
 urlpatterns = [
 
-	path('course/', Course, name='coursestest'),
 	#Course - Classroom Views
 	path('newcourse/', NewCourse, name='newcourse'),
 	path('MyCourses/', MyCourses, name='my-courses'),
