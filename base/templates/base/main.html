@@ -60,10 +60,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         
+                        {% if user.is_authenticated %}
                         <li class="nav-item  mx-3">
                             <a class="nav-link text-muted" aria-current="page" href="{% url 'index' %}" target="_blank">Home</a>
                         </li>
-                        {% if user.profile.user_type == 'student' or user.is_superuser %}                       
+                        {% endif %}
+                    {% if user.profile.user_type == 'student' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="#" target="_blank">Courses</a>
                        </li>
@@ -102,9 +104,11 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               
+                                {% if user.profile.user_type == 'student' or user.is_superuser %}
                                     <li class="nav-item  mx-3">
                                         <a class="text-decoration-none " href="{% url 'activity'%}"> <i class="fa-solid fa-clock-rotate-left pe-2"></i>Activity</a>
                                     </li>
+                                {% endif %}
                                     <li class="nav-item  mx-3">
                                         <a class="text-decoration-none " href="{% url 'profile'%}"> <i class="fa-solid fa-user pe-2"></i>My profile</a>
                                     </li>
