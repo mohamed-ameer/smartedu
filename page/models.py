@@ -6,7 +6,7 @@ import os
 # Create your models here.
 def user_directory_path(instance, filename):
 	#THis file will be uploaded to MEDIA_ROOT /the user_(id)/the file
-	return 'user_{0}/{1}'.format(instance.user.id, filename)
+	return 'user_files_{0}/{1}'.format(instance.user.id, filename)
 
 class PostFileContent(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
