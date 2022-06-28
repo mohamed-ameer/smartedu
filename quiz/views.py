@@ -64,6 +64,8 @@ def NewQuestion(request, course_id, module_id, quiz_id):
 
 def QuizDetail(request, course_id, module_id, quiz_id):
 	user = request.user
+	course = get_object_or_404(Course, id=course_id)
+	module = get_object_or_404(Module, id=module_id)
 	quiz = get_object_or_404(Quizzes, id=quiz_id)
 	my_attempts = Attempter.objects.filter(quiz=quiz, user=user)
 
@@ -72,6 +74,7 @@ def QuizDetail(request, course_id, module_id, quiz_id):
 		'my_attempts': my_attempts,
 		'course_id': course_id,
 		'module_id': module_id,
+		'course': course,
 	}
 	return render(request, 'quiz/quizdetail.html', context)
 

@@ -51,10 +51,14 @@ def NewPageModule(request, course_id, module_id):
 
 def PageDetail(request, course_id, module_id, page_id):
 	page = get_object_or_404(Page, id=page_id)
+	course = get_object_or_404(Course, id=course_id)
+	module = get_object_or_404(Module, id=module_id)
 	completed = Completion.objects.filter(course_id=course_id, user=request.user, page_id=page_id).exists()
 
 	context = {
 		'page': page,
+		'course': course,
+		'module': module,
 		'completed': completed,
 		'course_id': course_id,
 		'module_id': module_id,

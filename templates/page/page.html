@@ -1,36 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}{{ course.title }}/{{module.title}}/{{ page.title }}{% endblock %}
 {% block content %}
-<div class="section">
-	<h4>{{ page.title }}</h4>
-	<div class="divider"></div>
-</div>
-
-<div class="row">
-
-<div class="col s12">
-  {{ page.content | safe }}
-</div>
-
-<div class="col s12">
-  <ul class="collection with-header">
-    <li class="collection-header"><h4>Files</h4></li>
-    {% for file in page.files.all %}
-      <li class="collection-item"><div>{{ file.get_file_name }}<a class="secondary-content" href="{{ file.file.url }}" download>
-        <i class="material-icons">download</i></a></div>
-      </li>
-    {% endfor %}    
-  </ul>  
-</div>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<section class="container"> 
+  <h2 class="align-item mx-4 mt-4" >{{ page.title }}</h2>
+  <video src="https://www.youtube.com/watch?v=uTdUUpfA83s" class="align-item mx-4" width="79%" height="636px" controls>
+</section>
+<section class="container attach ">
+      <h4>Attachments</h4>
+      <div class=" border border-light shadow p-3 mb-5 bg-white rounded" style="width:79%">
+        {% for file in page.files.all %}
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6 22L18 22C19.6569 22 21 20.6569 21 19V12L21 8.37939C21 7.64611 20.7314 6.93822 20.245 6.38947L18.5969 4.53001L17.3143 3.04161C16.7444 2.38028 15.9147 2 15.0417 2H12H6C4.34315 2 3 3.34314 3 5V19C3 20.6569 4.34315 22 6 22ZM16 4.58022L17.0909 5.84616L18.1136 7H16V4.58022ZM14 4V8C14 8.55229 14.4477 9 15 9H19V12L19 19C19 19.5523 18.5523 20 18 20L6 20C5.44772 20 5 19.5523 5 19L5 5C5 4.44772 5.44772 4 6 4L12 4L14 4ZM8 12C8 11.4477 8.44771 11 9 11H15C15.5523 11 16 11.4477 16 12C16 12.5523 15.5523 13 15 13H9C8.44771 13 8 12.5523 8 12ZM9 15C8.44771 15 8 15.4477 8 16C8 16.5523 8.44771 17 9 17H15C15.5523 17 16 16.5523 16 16C16 15.4477 15.5523 15 15 15H9Z" fill="#373F41"/>
+        </svg>
+           <a class="secondary-content" href="{{ file.file.url }}" download>{{ file.get_file_name }}<i class="fa-solid fa-cloud-arrow-down"></i></a>
+           <br>
+        {% endfor %}            
+      </div>
+</section>
+  <section class="container my-3 attach"style="height: 332px;">
+      <h4>Professeur word</h4>
+      
+      <div class="row border border-light shadow p-3 mb-5 bg-white rounded" style="width:79%">
+          <div class="col-2  ">
+            {% if course.user.profile.picture %}
+            <img src="{{ course.user.profile.picture.url }}"
+              alt="Avatar" class="img-fluid" style="height: 200px;" />
+            {% else %}
+            <img src="{% static 'images/no_avatar.jpg' %}"
+             alt="Avatar" class="img-fluid" style="width: 300px;height: 300px;">
+            {% endif %}
+          </div>
+          <div class="col-10"> 
+              <h5 class="text-primary">{{course.user.username}}</h5>
+              <p>{{page.description}}</p>
+              </div>
+          </div>
+        </section>
+<section class="container my-3 attach">
+  <div class="row border border-light shadow p-3 mb-5 bg-white rounded" style="width:79%">
 {% if completed != True %}
 <div class="col s12 center-align">
-  <a class="btn-large" href="{% url 'mark-page-as-done' course_id module_id page.id %}"><i class="material-icons">done</i>Mark as done</a>
+  <a class="btn btn-primary" href="{% url 'mark-page-as-done' course_id module_id page.id %}"><i class="fa-solid fa-circle-check"></i>     Mark as done</a>
 </div>
 {% endif %}
-
 </div>
-
-
+</section>
+  <section class="container mb-3 attach"style="height: 446px;">
+      <h4>Discussion</h4>
+  </section>
 {% endblock %}
