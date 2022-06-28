@@ -72,16 +72,17 @@ def NewCourse(request):
 @login_required
 def CourseDetail(request, course_id):
 	user = request.user
+	profile = Profile.objects.get(user=request.user)
 	course = get_object_or_404(Course, id=course_id)
-	# teacher_mode = False
-	user_type = 'student'
-	if user == course.user:
-		# teacher_mode = True
-		user_type = 'teacher'
+	# # teacher_mode = False
+	# user_type = 'student'
+	# if user == course.user:
+	# 	# teacher_mode = True
+	# 	user_type = 'teacher'
 
 	context = {
-		'course': course,
-		'user_type': user_type,
+		'course': course,'profile': profile
+		# 'user_type': user_type,
 	}
 
 	return render(request, 'classroom/course.html', context)

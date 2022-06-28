@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Message, Room
 from .forms import RoomForm
-
 @login_required
 def rooms(request):
     rooms = Room.objects.all()

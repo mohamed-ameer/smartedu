@@ -4,7 +4,7 @@ from django.http import HttpResponseForbidden
 from module.forms import NewModuleForm
 from module.models import Module
 from classroom.models import Course
-
+from app_users.models import *
 from completion.models import Completion
 
 # Create your views here.
@@ -29,6 +29,7 @@ def NewModule(request, course_id):
 
 	context = {
 		'form': form,
+		'course': course
 	}
 
 	return render(request, 'module/newmodule.html', context)
@@ -36,20 +37,21 @@ def NewModule(request, course_id):
 
 def CourseModules(request, course_id):
 	user = request.user
+	profile = Profile.objects.get(user=request.user)
 	course = get_object_or_404(Course, id=course_id)
-
 	page_completions = Completion.objects.filter(user=user, course=course).values_list('page__pk', flat=True)
 	quiz_completions = Completion.objects.filter(user=user, course=course).values_list('quiz__pk', flat=True)
 	assignment_completions = Completion.objects.filter(user=user, course=course).values_list('assignment__pk', flat=True)
 
-	# teacher_mode = False
-	user_type = 'student'
-	if user == course.user:
-		# teacher_mode = True
-		user_type = 'teacher'
+	# # teacher_mode = False
+	# user_type = 'student'
+	# if user == course.user:
+	# 	# teacher_mode = True
+	# 	user_type = 'teacher'
 
 	context = {
-		'user_type': user_type,
+		# 'user_type': user_type,
+		'profile': profile,
 		'course': course,
 		'page_completions': page_completions,
 		'quiz_completions': quiz_completions,
