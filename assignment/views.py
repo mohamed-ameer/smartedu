@@ -41,7 +41,7 @@ def NewAssignment(request, course_id, module_id):
 			form = NewAssignmentForm()
 	
 	context = {
-		'form': form,
+		'form': form,'course': course
 	}
 	return render(request, 'assignment/newassignment.html', context)
 

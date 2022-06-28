@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-
+from classroom.models import Course
 from quiz.forms import NewQuizForm, NewQuestionForm
 from quiz.models import Answer, Question, Quizzes, Attempter, Attempt
 from module.models import Module
@@ -11,6 +11,7 @@ from completion.models import Completion
 
 def NewQuiz(request, course_id, module_id):
 	user = request.user
+	course = get_object_or_404(Course, id=course_id)
 	module = get_object_or_404(Module, id=module_id)
 	if request.method == 'POST':
 		form = NewQuizForm(request.POST)
@@ -26,13 +27,14 @@ def NewQuiz(request, course_id, module_id):
 		form = NewQuizForm()
 
 	context = {
-		'form': form,
+		'form': form,'course': course
 	}
 	return render(request, 'quiz/newquiz.html', context)
 
 
 def NewQuestion(request, course_id, module_id, quiz_id):
 	user = request.user
+	course = get_object_or_404(Course, id=course_id)
 	quiz = get_object_or_404(Quizzes, id=quiz_id)
 	if request.method == 'POST':
 		form = NewQuestionForm(request.POST)
@@ -55,7 +57,7 @@ def NewQuestion(request, course_id, module_id, quiz_id):
 		form = NewQuestionForm()
 
 	context = {
-		'form': form,
+		'form': form,'course': course
 	}
 	return render(request, 'quiz/newquestion.html', context)
 
