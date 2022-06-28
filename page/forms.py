@@ -1,35 +1,12 @@
 from django import forms
-from page.models import *
+from page.models import Page
 
 class NewPageForm(forms.ModelForm):
 	title = forms.CharField(widget=forms.TextInput(attrs={'class': 'validate'}), required=True)
-	video_url = forms.URLField(widget=forms.URLInput(attrs={'class': 'validate'}), required=True)
+	video_url = forms.CharField(widget=forms.TextInput(attrs={'class': 'validate'}), required=True)
+	description = forms.CharField(widget=forms.TextInput(attrs={'class': 'validate'}), required=True)
 	files = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
 
 	class Meta:
 		model = Page
-		fields = ('title','video_url','files')
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('body',)
-
-        labels = {"body":"Comment:"}
-
-        widgets = {
-            'body': forms.Textarea(attrs={'class':'form-control', 'rows':4, 'cols':70, 'placeholder':"Enter Your Comment"}),
-        }
-
-class ReplyForm(forms.ModelForm):
-    class Meta:
-        model = Reply
-        fields = ('reply_body',)
-
-        widgets = {
-            'reply_body': forms.Textarea(attrs={'class':'form-control', 'rows':2, 'cols':10}),
-        }
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(ReplyForm, self).__init__(*args, **kwargs)
+		fields = ('title','video_url','description', 'files')
