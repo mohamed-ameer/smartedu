@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load embed_video_tags %}
 {% block title %}{{ course.title }}/{{module.title}}/{{ page.title }}{% endblock %}
 {% block content %}
 <br>
@@ -9,7 +10,7 @@
 <br>
 <section class="container"> 
   <h2 class="align-item mx-4 mt-4" >{{ page.title }}</h2>
-  <video src="https://www.youtube.com/watch?v=uTdUUpfA83s" class="align-item mx-4" width="79%" height="636px" controls>
+  {%video page.video_url '800x600'%}
 </section>
 <section class="container attach ">
       <h4>Attachments</h4>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from embed_video.fields import EmbedVideoField
 import os
 
 
@@ -18,7 +19,7 @@ class PostFileContent(models.Model):
 
 class Page(models.Model):
 	title = models.CharField(max_length=150)
-	video_url = models.CharField(max_length=300)
+	video_url = EmbedVideoField()
 	description = models.CharField(max_length=300)
 	files = models.ManyToManyField(PostFileContent)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='page_owner')

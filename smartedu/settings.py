@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'bootstrap4',
+    'embed_video',
     # my app portal
     'app_users',
     'classroom',
