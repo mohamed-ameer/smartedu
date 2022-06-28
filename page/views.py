@@ -44,7 +44,7 @@ def NewPageModule(request, course_id, module_id):
 		else:
 			form = NewPageForm()
 	context = {
-		'form': form,
+		'form': form,'course': course
 	}
 
 	return render(request, 'page/newpage.html', context)

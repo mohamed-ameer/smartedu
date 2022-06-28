@@ -29,12 +29,19 @@
             <a href="{% url 'new-module' course.id %}" class="col-1 btn btn-primary btn-floating rounded-circle mb-3 mx-3 p-3"><i class="fa-solid fa-plus"></i></a>
             {% endif %}
             </div>
+            <!-- start -->
+            {% for module in course.modules.all %}
             <div class="mx-auto pb-2 gx-5 border-scandary  border rounded">
-                <h4 class="ms-2 py-3" style="color: #0053cb;">Unit name   </h4>
-                <button type="button" class="btn btn-primary ms-2 btn-sm"onclick="AddTopic()">Add new Topic</button>
-                <button type="button" class="btn btn-secondary ms-2 btn-sm"onclick="window.location.href='CreateQuiz.html'">Add new Quiz</button>
-                <button type="button" class="btn btn-secondary ms-2 btn-sm"onclick="AddAss()">Add new Assignment</button>
+                <h4 class="ms-2 py-3" style="color: #0053cb;">{{ module.title }}</h4>
+                {% if profile.user_type == 'teacher'%}
+                <a class="btn btn-primary ms-2 btn-sm" href="{% url 'new-page' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Topic</a>
+                <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-quiz' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Quiz </a>
+                <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-assignment' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Assignment</a>
+                {% endif %}
             </div>
+            {% endfor %}
+            <!-- end -->
+            
          </div>
 
         </section>
