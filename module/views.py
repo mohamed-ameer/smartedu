@@ -43,13 +43,13 @@ def CourseModules(request, course_id):
 	assignment_completions = Completion.objects.filter(user=user, course=course).values_list('assignment__pk', flat=True)
 
 	# teacher_mode = False
-	user_types = 'student'
+	user_type = 'student'
 	if user == course.user:
 		# teacher_mode = True
-		user_types = 'teacher'
+		user_type = 'teacher'
 
 	context = {
-		'user_types': user_types,
+		'user_type': user_type,
 		'course': course,
 		'page_completions': page_completions,
 		'quiz_completions': quiz_completions,

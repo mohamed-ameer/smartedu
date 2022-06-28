@@ -73,14 +73,15 @@ def NewCourse(request):
 def CourseDetail(request, course_id):
 	user = request.user
 	course = get_object_or_404(Course, id=course_id)
-	teacher_mode = False
-
+	# teacher_mode = False
+	user_type = 'student'
 	if user == course.user:
-		teacher_mode = True
+		# teacher_mode = True
+		user_type = 'teacher'
 
 	context = {
 		'course': course,
-		'teacher_mode': teacher_mode,
+		'user_type': user_type,
 	}
 
 	return render(request, 'classroom/course.html', context)
