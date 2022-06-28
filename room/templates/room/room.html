@@ -10,8 +10,9 @@
     <h1 class="text-3xl lg:text-6xl text-blue-700">{{ room.name }}</h1>
     <p>this room is created by:@{{ room.user }}</p>
 </div>
-<div class="flex flex-row">
-<div class="basis-3/4">
+<div class="grid grid-cols-3 gap-4">
+<div class=""></div>
+<div class="col-span-2">
 <div class="lg:w-2/4 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
     <div class="chat-messages space-y-3" id="chat-messages">
         {% for message in messages %}
@@ -24,8 +25,7 @@
             {% endif %}
             </div>
             <div class="inline-block">
-            <p class="font-bold" style="color: #0053cb;">
-                {{message.user.username}}</p>
+            <p class="font-bold" style="color: #0053cb;">@{{message.user.username}}</p>
             </div>
             <p style="word-wrap: break-word;">{{message.content}}</p>
             <p class="text-right text-sm rounded-lg">{{message.date_added}}</p>
@@ -45,7 +45,7 @@
     </form>
 </div>
 </div>
-<div class="basis-1/4"></div>
+<div class=""></div>
 </div>
 {% endblock %}
 
