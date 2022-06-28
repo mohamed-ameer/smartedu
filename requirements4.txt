@@ -16,6 +16,7 @@ django-bootstrap4==22.1
 django-ckeditor==6.4.0
 django-crispy-forms==1.11.2
 django-embed-video==1.4.4
+django-jazzmin==2.5.0
 django-js-asset==2.0.0
 django-widget-tweaks==1.4.12
 hyperlink==21.0.0
