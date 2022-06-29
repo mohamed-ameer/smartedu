@@ -10,3 +10,4 @@ class NewPageForm(forms.ModelForm):
 	class Meta:
 		model = Page
 		fields = ('title','video_url','description', 'files')
+
