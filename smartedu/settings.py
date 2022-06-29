@@ -148,7 +148,26 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# JAZZMIN
+JAZZMIN_SETTINGS={
+    "site_title": "SmartEDU Admin",
+    "site_header": "SmartEDU",
+    "site_brand": "SmartEDU",
+    "welcome_sign": "Welcome to the SmartEDU",
+    "copyright": "Acme SmartEDU Ltd",
+        "topmenu_links": [
 
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added)
+        {"name": "Support", "url": "https://github.com/mohamed-ameer/smartedu", "new_window": True},
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+    ],
+}
 
 #Login
 LOGIN_REDIRECT_URL = 'index'
