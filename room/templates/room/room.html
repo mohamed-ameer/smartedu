@@ -34,8 +34,8 @@
             <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="photo" style="height: 50px;">
             {% endif %}
             </div>
-            <div class="inline-block">
-            <p class="font-bold" style="color: #0053cb;">@{{message.user.username}}</p>
+            <div class="inline-block pb-2">
+            <p class="font-bold " style="color: #0053cb;">@{{message.user.username}}</p>
             </div>
             <p style="word-wrap: break-word;">{{message.content}}</p>
             <p class="text-right text-sm rounded-lg">{{message.date_added|naturalday}}</p>
