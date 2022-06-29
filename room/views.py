@@ -4,11 +4,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Message, Room
 from .forms import RoomForm
+from .filters import RoomFilter
 @login_required
 def rooms(request):
     rooms = Room.objects.all()
-
-    return render(request, 'room/rooms.html', {'rooms': rooms})
+    myFilter=RoomFilter(request.GET,queryset=rooms)
+    rooms =myFilter.qs
+    return render(request, 'room/rooms.html', {'rooms': rooms,'myFilter':myFilter})
 
 @login_required
 def room(request, slug):

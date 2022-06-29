@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.views.generic import TemplateView
 from .models import *
+from .filters import ProfileFilter
 from django.views.generic import CreateView
 from .forms import *
 from django.contrib.auth import update_session_auth_hash

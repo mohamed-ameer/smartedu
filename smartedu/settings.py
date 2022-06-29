@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'base',
     'channels',
     'room',
+    'django_filters',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
