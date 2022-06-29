@@ -149,6 +149,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # JAZZMIN
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+}
 JAZZMIN_SETTINGS={
     "site_title": "SmartEDU Admin",
     "site_header": "SmartEDU",
