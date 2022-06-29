@@ -17,9 +17,23 @@ class AssignmentFileContent(models.Model):
 	def get_file_name(self):
 		return os.path.basename(self.file.name)
 
+assignment_type = (
+    ('Regular_File', 'Regular_File'),
+    ('Programming_File', 'Programming_File'),
+)
+language_type = (
+    ('None', 'None'),
+    ('C', 'C'),
+    ('C++', 'C++'),
+    ('Java', 'Java'),
+    ('Python', 'Python'),
+)
+
 class Assignment(models.Model):
 	title = models.CharField(max_length=150)
 	points = models.PositiveIntegerField()
+	assignment_type = models.CharField(max_length=30, choices=assignment_type, default='Regular_File')
+	language_type = models.CharField(max_length=30, choices=language_type, default='None')
 	due = models.DateField()
 	files = models.ManyToManyField(AssignmentFileContent)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,6 +43,8 @@ class Assignment(models.Model):
 
 class Submission(models.Model):
 	file = models.FileField(upload_to=user_directory_path)
+	assignment_type = models.CharField(max_length=30, choices=assignment_type, default='Regular_File')
+	language_type = models.CharField(max_length=30, choices=language_type, default='None')
 	comment = models.CharField(max_length=1000,blank=True)
 	date = models.DateTimeField(auto_now_add=True)
 	assignment = models.ForeignKey(Assignment, on_delete=models.CASCADE)

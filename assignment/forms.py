@@ -10,7 +10,7 @@ class NewAssignmentForm(forms.ModelForm):
 
 	class Meta:
 		model = Assignment
-		fields = ('title', 'points', 'due', 'files')
+		fields = ('title', 'points','assignment_type','language_type', 'due', 'files')
 
 class NewSubmissionForm(forms.ModelForm):
 	file = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': False}), required=True)
@@ -18,4 +18,4 @@ class NewSubmissionForm(forms.ModelForm):
 
 	class Meta:
 		model = Submission
-		fields = ('file', 'comment')
+		fields = ('file','assignment_type','language_type', 'comment')
