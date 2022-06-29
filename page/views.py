@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
-from page.models import Page, PostFileContent,Comment
+from page.models import Page, PostFileContent,Comment, Reply
 from classroom.models import Course
 from module.models import Module
 from completion.models import Completion
@@ -54,12 +54,23 @@ def PageDetail(request, course_id, module_id, page_id):
 	course = get_object_or_404(Course, id=course_id)
 	module = get_object_or_404(Module, id=module_id)
 	completed = Completion.objects.filter(course_id=course_id, user=request.user, page_id=page_id).exists()
+
 	comments =Comment.objects.filter(page=page)
+	replies =Reply.objects.filter(page=page)
 
 	if request.method == 'POST':
-		comment = request.POST.get('comment')#name='comment' in input of form
-		comment_info = Comment.objects.create(user_given=request.user,page=page,content=comment)
-		comment_info.save()
+		if request.POST.get('form-type') == 'comment-post':
+			comment = request.POST.get('comment')#name='comment' in input of form
+			comment_info = Comment.objects.create(user_given=request.user,page=page,content=comment)
+			comment_info.save()
+		else:
+			reply = request.POST.get('reply')#name='reply' in input of form
+			comment_id= request.POST.get('comment_id')
+			current_comment=Comment.objects.get(id=comment_id)
+			reply_info = Reply.objects.create(user_given=request.user,reply_content=reply,comment_on=current_comment)
+			reply_info.save()
+
+
 
 	context = {
 		'page': page,
@@ -69,6 +80,7 @@ def PageDetail(request, course_id, module_id, page_id):
 		'course_id': course_id,
 		'module_id': module_id,
 		'comments': comments,
+		'replies': replies,
 	}
 	return render(request, 'page/page.html', context)
 

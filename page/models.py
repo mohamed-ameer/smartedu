@@ -31,7 +31,15 @@ class Page(models.Model):
 class Comment(models.Model):
 	user_given=models.ForeignKey(User,on_delete=models.CASCADE)
 	page=models.ForeignKey(Page,on_delete=models.CASCADE)
-	content=models.CharField(max_length=10000)
+	content=models.TextField()
 	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
 	def __str__(self):
-		return self.user_given.username
+		return self.content
+class Reply(models.Model):
+	user_given=models.ForeignKey(User,on_delete=models.CASCADE)
+	reply_content=models.TextField()
+	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
+	comment_on=models.ForeignKey(Comment,on_delete=models.CASCADE)
+	page=models.ForeignKey(Page,on_delete=models.CASCADE,null=True)
+	def __str__(self):
+		return self.reply_content

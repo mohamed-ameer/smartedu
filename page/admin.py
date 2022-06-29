@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Page)
 admin.site.register(PostFileContent)
 admin.site.register(Comment)
+admin.site.register(Reply)
