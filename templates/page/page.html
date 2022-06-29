@@ -9,11 +9,11 @@
 <br>
 <br>
 <section class="container"> 
-  <h2 class="align-item mx-4 mt-4" >{{ page.title }}</h2>
+  <h2 class="align-item mx-4 mt-4" >{{ page.title }}    <i class="fa-solid fa-circle-play"></i></h2>
   {%video page.video_url '1000x500'%}
 </section>
 <section class="container attach ">
-      <h4>Attachments</h4>
+      <h4>Attachments    <i class="fa-solid fa-folder-open"></i></h4>
       <div class=" border border-light shadow p-3 mb-5 bg-white rounded" style="width:79%">
         {% for file in page.files.all %}
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@
       </div>
 </section>
   <section class="container my-3 attach"style="height: 332px;">
-      <h4>Professeur word</h4>
+      <h4>Professor description   <i class="fa-solid fa-user-pen"></i></h4>
       
       <div class="row border border-light shadow p-3 mb-5 bg-white rounded" style="width:79%">
           <div class="col-2  ">
@@ -53,6 +53,6 @@
 </div>
 </section>
   <section class="container mb-3 attach">
-      <h4>Discussion</h4>
+      <h4>Discussion    <i class="fa-solid fa-comments"></i></h4>
   </section>
 {% endblock %}
