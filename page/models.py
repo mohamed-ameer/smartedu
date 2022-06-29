@@ -28,3 +28,10 @@ class Page(models.Model):
 	def __str__(self):
 		return self.title
 
+class Comment(models.Model):
+	user_given=models.ForeignKey(User,on_delete=models.CASCADE)
+	page=models.ForeignKey(Page,on_delete=models.CASCADE)
+	content=models.CharField(max_length=10000)
+	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
+	def __str__(self):
+		return self.user_given.username

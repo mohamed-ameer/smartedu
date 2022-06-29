@@ -1,5 +1,6 @@
 {% extends 'room/baseroom.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}{{ room.name }} | {% endblock %}
 
 {% block content %}
@@ -37,7 +38,7 @@
             <p class="font-bold" style="color: #0053cb;">@{{message.user.username}}</p>
             </div>
             <p style="word-wrap: break-word;">{{message.content}}</p>
-            <p class="text-right text-sm rounded-lg">{{message.date_added}}</p>
+            <p class="text-right text-sm rounded-lg">{{message.date_added|naturalday}}</p>
         </div>
         {% endfor %}
     </div>

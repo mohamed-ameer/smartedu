@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
 
-from page.models import Page, PostFileContent
+from page.models import Page, PostFileContent,Comment
 from classroom.models import Course
 from module.models import Module
 from completion.models import Completion
@@ -54,6 +54,12 @@ def PageDetail(request, course_id, module_id, page_id):
 	course = get_object_or_404(Course, id=course_id)
 	module = get_object_or_404(Module, id=module_id)
 	completed = Completion.objects.filter(course_id=course_id, user=request.user, page_id=page_id).exists()
+	comments =Comment.objects.filter(page=page)
+
+	if request.method == 'POST':
+		comment = request.POST.get('comment')#name='comment' in input of form
+		comment_info = Comment.objects.create(user_given=request.user,page=page,content=comment)
+		comment_info.save()
 
 	context = {
 		'page': page,
@@ -62,6 +68,7 @@ def PageDetail(request, course_id, module_id, page_id):
 		'completed': completed,
 		'course_id': course_id,
 		'module_id': module_id,
+		'comments': comments,
 	}
 	return render(request, 'page/page.html', context)
 
