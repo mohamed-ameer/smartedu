@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'module',
     'page',
     'quiz',
+    'question',
     'assignment',
     'completion',
     # chat apps

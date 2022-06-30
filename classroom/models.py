@@ -6,6 +6,10 @@ import uuid
 # Create your models here.
 from module.models import Module
 from assignment.models import Submission
+from question.models import Question
+
+#3rd apps field
+from ckeditor.fields import RichTextField
 
 STATUS_CHOICES = (
 	('pending', 'Pending'),
@@ -57,7 +61,7 @@ class Course(models.Model):
 	# many courses can enrolled by many users(studebt)
 	enrolled = models.ManyToManyField(User)
 	modules = models.ManyToManyField(Module)
-
+	questions = models.ManyToManyField(Question)
 	def __str__(self):
 		return self.title
 

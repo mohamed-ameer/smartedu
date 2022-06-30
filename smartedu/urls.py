@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', include('app_users.urls')),
     path('course/', include('classroom.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),    
     path('videochat/', include('videochat.urls')),
     path('', include('base.urls')),
     path('rooms/', include('room.urls')),
