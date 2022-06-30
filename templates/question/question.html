@@ -99,11 +99,11 @@
                 </div>
           
                 <div class="col s12">
-                  <a href="" class="vote" vote-type="U" answer-id="{{ answer.id }}"><i class="material-icons">thumb_up</i>Up vote</a>  
-                  <a href="" class="vote" vote-type="D" answer-id="{{ answer.id }}"><i class="material-icons">thumb_down</i>Down vote</a> 
+                  <a href="" class="vote" vote-type="U" answer-id="{{ answer.id }}"><i class="fas fa-thumbs-up"></i></a>  
+                  <a href="" class="vote" vote-type="D" answer-id="{{ answer.id }}"><i class="fa-solid fa-thumbs-down"></i></a> 
           
                   {% if moderator == True %}
-                    <a href="{% url 'mark-as-answer' course.id question.id answer.id %}"><i class="material-icons">done</i>Mark as answer</a>
+                    <a href="{% url 'mark-as-answer' course.id question.id answer.id %}"><i class="fa-solid fa-check"></i>Mark as answer</a>
                   {% endif %}
           
                   <span class="card-title"><b>Votes</b></span>
