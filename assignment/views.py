@@ -48,6 +48,7 @@ def NewAssignment(request, course_id, module_id):
 
 def AssignmentDetail(request, course_id, module_id, assignment_id):
 	user = request.user
+	module = get_object_or_404(Module, id=module_id)
 	course = get_object_or_404(Course, id=course_id)
 	assignment = get_object_or_404(Assignment, id=assignment_id)
 	my_submissions = Submission.objects.filter(assignment=assignment, user=user)
@@ -59,11 +60,13 @@ def AssignmentDetail(request, course_id, module_id, assignment_id):
 		'my_submissions': my_submissions,
 		'course_id': course_id,
 		'module_id': module_id,
+		'module': module,
 	}
 	return render(request, 'assignment/assignment.html', context)
 
 def NewSubmission(request, course_id, module_id, assignment_id):
 	user = request.user
+	module = get_object_or_404(Module, id=module_id)
 	assignment = get_object_or_404(Assignment, id=assignment_id)
 	course = get_object_or_404(Course, id=course_id)
 
@@ -80,6 +83,11 @@ def NewSubmission(request, course_id, module_id, assignment_id):
 		form = NewSubmissionForm()
 	context = {
 		'form': form,
+		'course': course,
+		'course_id': course_id,
+		'module_id': module_id,
+		'assignment_id': assignment_id,
+		'module': module,
 		'assignment': assignment,
 	}
 	return render(request, 'assignment/submitassignment.html', context)
