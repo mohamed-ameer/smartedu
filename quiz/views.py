@@ -71,17 +71,23 @@ def QuizDetail(request, course_id, module_id, quiz_id):
 
 	context = {
 		'quiz': quiz,
+		'user': user,
 		'my_attempts': my_attempts,
 		'course_id': course_id,
 		'module_id': module_id,
 		'course': course,
+		'module': module,
 	}
 	return render(request, 'quiz/quizdetail.html', context)
 
 def TakeQuiz(request, course_id, module_id, quiz_id):
 	quiz = get_object_or_404(Quizzes, id=quiz_id)
+	course = get_object_or_404(Course, id=course_id)
+	module = get_object_or_404(Module, id=module_id)
 	context = {
 		'quiz': quiz,
+		'course': course,
+		'module': module,
 		'course_id': course_id,
 		'module_id': module_id,
 	}
