@@ -48,11 +48,13 @@ def NewAssignment(request, course_id, module_id):
 
 def AssignmentDetail(request, course_id, module_id, assignment_id):
 	user = request.user
+	course = get_object_or_404(Course, id=course_id)
 	assignment = get_object_or_404(Assignment, id=assignment_id)
 	my_submissions = Submission.objects.filter(assignment=assignment, user=user)
 
 	context = {
 		'assignment': assignment,
+		'course': course,
 		'course_id': course_id,
 		'my_submissions': my_submissions,
 		'course_id': course_id,
