@@ -32,7 +32,11 @@
       <div class="mx-5">
           <div class="row text-uppercase border-bottom border-secandary">
           <h5 class="col-8 text-primary">Assignment</h5> 
-          <p class="col-3 text-danger text-end">Not submitted</p>
+        {% if my_attempts.count == 0 %}
+        <p class="col-3 text-danger text-end">Not submitted</p>
+        {% else %}  
+        <p class="col-3 text-primary text-end">submitted</p>
+        {% endif %}
           <!-- after submitted
               <p class="col-3 text-success text-end"> submitted</p> -->
       </div>

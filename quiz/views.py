@@ -112,16 +112,22 @@ def SubmitAttempt(request, course_id, module_id, quiz_id):
 				earned_points += question.points
 				attempter.score += earned_points
 				attempter.save()
-		return redirect('index')
+		return redirect('quiz-detail',course_id=course_id,module_id=module_id,quiz_id=quiz_id)
 
 
 def AttemptDetail(request, course_id, module_id, quiz_id, attempt_id):
 	user = request.user
 	quiz = get_object_or_404(Quizzes, id=quiz_id)
+	course = get_object_or_404(Course, id=course_id)
+	module = get_object_or_404(Module, id=module_id)
+	my_attempts = Attempter.objects.filter(quiz=quiz, user=user)
 	attempts = Attempt.objects.filter(quiz=quiz, attempter__user=user)
 
 	context = {
 		'quiz': quiz,
+		'course': course,
+		'module': module,
+		'my_attempts': my_attempts,
 		'attempts': attempts,
 		'course_id': course_id,
 		'module_id': module_id,
