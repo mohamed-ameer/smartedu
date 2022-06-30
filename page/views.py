@@ -55,32 +55,32 @@ def PageDetail(request, course_id, module_id, page_id):
 	module = get_object_or_404(Module, id=module_id)
 	completed = Completion.objects.filter(course_id=course_id, user=request.user, page_id=page_id).exists()
 
-	comments =Comment.objects.filter(page=page)
-	replies =Reply.objects.filter(page=page)
-
 	if request.method == 'POST':
-		if request.POST.get('form-type') == 'comment-post':
-			comment = request.POST.get('comment')#name='comment' in input of form
-			comment_info = Comment.objects.create(user_given=request.user,page=page,content=comment)
-			comment_info.save()
+		comm = request.POST.get('comm')
+		comm_id = request.POST.get('comm_id') #None
+
+		if comm_id:
+			Reply(page=page,
+					user = request.user,
+					comm = comm,
+					comment= Comment.objects.get(id=int(comm_id))
+				).save()
 		else:
-			reply = request.POST.get('reply')#name='reply' in input of form
-			comment_id= request.POST.get('comment_id')
-			current_comment=Comment.objects.get(id=comment_id)
-			reply_info = Reply.objects.create(user_given=request.user,reply_content=reply,comment_on=current_comment)
-			reply_info.save()
+			Comment(page=page, user=request.user, comm=comm).save()
 
 
 
+	comments = []
+	for c in Comment.objects.filter(page=page):
+		comments.append([c, Reply.objects.filter(comment=c)])
 	context = {
+		'comments':comments,
 		'page': page,
 		'course': course,
 		'module': module,
 		'completed': completed,
 		'course_id': course_id,
 		'module_id': module_id,
-		'comments': comments,
-		'replies': replies,
 	}
 	return render(request, 'page/page.html', context)
 

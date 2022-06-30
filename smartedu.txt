@@ -4,5 +4,3 @@ asdfzxcv159753
 
 https://console.agora.io/
 
-
-{% url 'page-detail' course.id module.id page.id %}

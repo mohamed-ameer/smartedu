@@ -29,17 +29,17 @@ class Page(models.Model):
 		return self.title
 
 class Comment(models.Model):
-	user_given=models.ForeignKey(User,on_delete=models.CASCADE)
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
 	page=models.ForeignKey(Page,on_delete=models.CASCADE)
-	content=models.TextField()
-	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
+	comm=models.TextField()
+	time=models.DateTimeField(auto_now_add=True,auto_now=False)
 	def __str__(self):
 		return self.content
 class Reply(models.Model):
-	user_given=models.ForeignKey(User,on_delete=models.CASCADE)
-	reply_content=models.TextField()
-	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
-	comment_on=models.ForeignKey(Comment,on_delete=models.CASCADE)
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
 	page=models.ForeignKey(Page,on_delete=models.CASCADE,null=True)
+	comm=models.TextField()
+	time=models.DateTimeField(auto_now_add=True,auto_now=False)
+	comment=models.ForeignKey(Comment,on_delete=models.CASCADE)
 	def __str__(self):
 		return self.reply_content

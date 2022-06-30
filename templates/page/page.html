@@ -56,5 +56,92 @@
 <!-- comment -->
   <section class="container mb-3 attach">
       <h4>Discussion    <i class="fa-solid fa-comments"></i></h4>
+      <hr>
+      <div class="pt-5">
+        <div class="section-title">
+          <h2 class="mb-5">{{ comments.count }}Comments</h2>
+        </div>
+        {% if user.is_authenticated %}    
+        <div class="comment-form-wrap pt-5">
+          <div class="section-title">
+            <h2 class="mb-5">Leave a comment</h2>
+          </div>
+          <form method="POST" class="p-5 bg-light">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="message">Comment</label>
+              <textarea name="comm" id="message" cols="30" rows="3" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Post Comment" class="btn btn-primary py-3">
+            </div>
+
+          </form>
+        </div>    
+        <ul class="comment-list">
+          {% for cm in comments %}
+          <li class="comment">
+            <div class="vcard bio">
+              {% if cm.user.profile.picture%}
+              <img src="{{cm.user.profile.picture.url}}" class="nav-img rounded-circle pe-1 " alt="Image placeholder" style="height: 50px;">
+              {% else %}
+              <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="Image placeholder" style="height: 50px;">
+              {% endif %}
+            </div>
+            <div class="comment-body">
+              <h3>{{cm.0.user.username}}</h3>
+              <div class="meta">{{cm.0.time|naturalday}}</div>
+              <p>{{cm.0.comm}}</p>
+              <p id="{{cm.0.id}}"><button onclick="ReplyForm('{{cm.0.id}}')" class="reply">Reply</button></p>
+            </div>
+
+            <ul class="children">
+              {% for subc in cm.1 %}
+              <li class="comment">
+                <div class="vcard bio">
+                  {% if subc.user.profile.picture%}
+                  <img src="{{subc.user.profile.picture.url}}" class="nav-img rounded-circle pe-1 " alt="Image placeholder" style="height: 50px;">
+                  {% else %}
+                  <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="Image placeholder" style="height: 50px;">
+                  {% endif %}
+                </div>
+                <div class="comment-body">
+                  <h3>{{subc.user.username}}</h3>
+                  <div class="meta">{{subc.time|naturalday}}</div>
+                  <p>{{subc.comm}}</p>
+                </div>
+
+
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        
+        </ul>
+                    <!-- END comment-list -->
+                    <script type="text/javascript">
+                      function ReplyForm(id) {
+                        let elm = `<form method="POST" class="p-5 bg-light">
+                                    {% csrf_token %}
+                        <div class="form-group">
+                        <input type='text' value='${id}' name = 'comm_id' style="display:none;" readonly/>
+                          <label for="message">Comment</label>
+                          <textarea name="comm" id="message" cols="30" rows="3" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                          <input type="submit" value="Post Comment" class="btn btn-primary py-3">
+                        </div>
+      
+                      </form>`;
+                      document.getElementById(id).innerHTML = elm;
+                      }
+                    </script>
+                    {% else %}
+                    <li><a href="{% url 'account_login' %}" class="nav-link text-right text-info">Sign In</a></li>
+                    <li><a href="{% url 'account_signup' %}" class="nav-link text-right text-info">Sign Up</a></li>
+                    {% endif %}
+                  </div>
+          </div>
   </section>
 {% endblock %}

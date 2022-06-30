@@ -29,11 +29,28 @@ class Category(models.Model):
 ###########################################################################
 # to know about UUID[https://www.techtarget.com/searchapparchitecture/definition/UUID-Universal-Unique-Identifier]
 # it is very unique as same as your fingerprint
+
+
+university = (
+    ('Zagazig_University', 'Zagazig _University'),
+    ('Cairo_University', 'Cairo_University'),
+    ('Ain_Shams_University', 'Ain_Shams_University'),
+)
+major_types = (
+    ('civil_engineering', 'civil_engineering'),
+    ('chemical_engineering', 'chemical_engineering'),
+    ('mechanical_engineering', 'mechanical_engineering'),
+    ('electrical_engineering', 'electrical_engineering'),
+    ('industrial_engineering', 'industrial_engineering'),
+)
+
 class Course(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	picture = models.ImageField(upload_to=user_directory_path)
 	title = models.CharField(max_length=200)
 	description = models.CharField(max_length=300)
+	university = models.CharField(max_length=30, choices=university, default='Zagazig_University')
+	major_types = models.CharField(max_length=30, choices=major_types, default='electrical_engineering')
 	category = models.ForeignKey(Category, on_delete=models.CASCADE)
 	# many courses created by one user(teacher)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_owner')
