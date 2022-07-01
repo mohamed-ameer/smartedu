@@ -68,6 +68,7 @@ def NewSubmission(request, course_id, module_id, assignment_id):
 	user = request.user
 	module = get_object_or_404(Module, id=module_id)
 	assignment = get_object_or_404(Assignment, id=assignment_id)
+	my_submissions = Submission.objects.filter(assignment=assignment, user=user)
 	course = get_object_or_404(Course, id=course_id)
 
 	if request.method == 'POST':
@@ -86,6 +87,7 @@ def NewSubmission(request, course_id, module_id, assignment_id):
 		'course': course,
 		'course_id': course_id,
 		'module_id': module_id,
+		'my_submissions': my_submissions,
 		'assignment_id': assignment_id,
 		'module': module,
 		'assignment': assignment,
