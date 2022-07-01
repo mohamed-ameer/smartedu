@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-
+from app_users.models import Profile
 from classroom.models import Course, Category,Grade
 from app_users.models import *
 from classroom.forms import NewCourseForm
@@ -197,6 +197,7 @@ def GradeSubmission(request, course_id, grade_id):
             grade.status = 'graded'
             grade.graded_by = user
             grade.save()
+            Profile.objects.get(pk=user.id).modify_points(int(points))
             return redirect('student-submissions', course_id=course_id)
     context = {
         'course': course,

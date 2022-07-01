@@ -170,7 +170,7 @@ nav {
                                 <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="photo" style="width:50px ;">
                                 {% endif %}
                                 <p class="mt-2">{{nav_profile}}</p>
-                              <!-- <div class="rounded-pill btn-primary px-1"  >8866</div> عدد النقط اللي جمعها -->
+                                <div class="rounded-pill btn-primary px-1">{{nav_profile.points}}</div>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 {% if user.profile.user_type == 'student' or user.is_superuser %}

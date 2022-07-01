@@ -64,6 +64,10 @@ class Profile(models.Model):
     #     (teacher, 'teacher'),
     # ]
     user_type = models.CharField(max_length=10, choices=user_types, default='student')
+    points = models.PositiveIntegerField(default=0, verbose_name="points")
+    def modify_points(self, added_points):
+        self.points += added_points
+        self.save()
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         SIZE = 250, 250
