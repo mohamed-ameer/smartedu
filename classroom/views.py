@@ -7,7 +7,6 @@ from app_users.models import *
 from classroom.forms import NewCourseForm
 from .filters import *
 
-
 # Create your views here.
 
 @login_required
