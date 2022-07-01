@@ -30,6 +30,12 @@ def user_directory_path_banner(instance, filename):
         os.remove(full_path)
 
     return banner_pic_name
+
+university = (
+    ('Zagazig_University', 'Zagazig _University'),
+    ('Cairo_University', 'Cairo_University'),
+    ('Ain_Shams_University', 'Ain_Shams_University'),
+)
 user_types = (
     ('student', 'student'),
     ('teacher', 'teacher'),
@@ -46,7 +52,7 @@ class Profile(models.Model):
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     phone = models.CharField(max_length=15)
     college_id = models.CharField(max_length=20)
-    univeristy_name = models.CharField(max_length=50)
+    univeristy_name = models.CharField(max_length=30, choices=university, default='Zagazig_University')
     major_types = models.CharField(max_length=30, choices=major_types, default='electrical_engineering')
     facebook =models.URLField(max_length=200, blank=True)
     github =models.URLField(max_length=200, blank=True)

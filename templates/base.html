@@ -175,7 +175,7 @@ nav {
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 {% if user.profile.user_type == 'student' or user.is_superuser %}
                                     <li class="nav-item  mx-3">
-                                        <a class="text-decoration-none " href="{% url 'activity'%}"> <i class="fa-solid fa-clock-rotate-left pe-2"></i>Activity</a>
+                                        <a class="text-decoration-none " href="{% url 'activity'%}"><i class="fa-solid fa-building-columns"></i>    Activity</a>
                                     </li>
                                 {% endif %}
                                     <li class="nav-item  mx-3">
