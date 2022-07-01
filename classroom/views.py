@@ -39,8 +39,11 @@ def Activity(request):
     }
     return render(request, 'classroom/Activity.html', context)
 def Leaderboard(request):
-
-    return render(request, 'classroom/Leaderboard.html')
+    profiles =Profile.objects.all()
+    context = {
+        'profiles': profiles,
+    }
+    return render(request, 'classroom/Leaderboard.html', context)
 
 def CategoryCourses(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)

@@ -104,7 +104,7 @@ nav {
                         {% endif %}
                     {% if user.profile.user_type == 'student' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
-                           <a class="nav-link text-muted" href="#" target="_blank">Courses</a>
+                        <a class="nav-link text-muted" href="{% url 'all-courses'%}" target="_blank">Courses</a>
                        </li>
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'scheduale'%}" target="_blank">Scheduale</a>
