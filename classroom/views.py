@@ -5,6 +5,7 @@ from django.http import HttpResponseForbidden
 from classroom.models import Course, Category,Grade
 from app_users.models import *
 from classroom.forms import NewCourseForm
+from .filters import *
 
 
 # Create your views here.
@@ -155,10 +156,9 @@ def MyCourses(request):
 def AllCourses(request):
     user = request.user
     courses = Course.objects.all()
-    # myFilter=RoomFilter(request.GET,queryset=rooms)
-    # rooms =myFilter.qs
-    return render(request, 'classroom/allcourses.html', {'courses': courses,'user':user})
-    # return render(request, 'room/rooms.html', {'rooms': rooms,'myFilter':myFilter})
+    myFilter=CourseFilter(request.GET,queryset=courses)
+    courses =myFilter.qs
+    return render(request, 'classroom/allcourses.html', {'courses': courses,'user':user,'myFilter':myFilter})
 # ##############################################################
 
 def Submissions(request, course_id):

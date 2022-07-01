@@ -8,8 +8,35 @@
 <br>
 <br>
 <div class="container mt-5 pt-5">
-  <section class="vh-10">
-<!-- filter -->
+  <section class="">
+    <!--  -->
+    <div class="container">
+      <div class="row">
+            <div id="filter-panel" class="collapse filter-panel bg-light">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form method="get" class="form-inline" role="form">
+                          <br>
+                          <div class="form-group h6">
+                          {{myFilter.form}}
+                          </div>
+                          <br>
+                          <div class="form-group">    
+                            <button type="submit" class="btn btn-primary">
+                              <i class="fas fa-search"></i>   Search
+                            </button> 
+                          </div> 
+                          <br> 
+                      </form>
+                    </div>
+                </div>
+            </div>    
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+              <i class="fa-solid fa-gear"></i>  Advanced Search
+            </button>
+      </div>
+    </div>
+    <!--  -->
   </section>          
   <hr class="my-5" />
   <section class="text-center">
