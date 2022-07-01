@@ -35,8 +35,61 @@
             <a href="{% url 'new-module' course.id %}" class="col-1 btn btn-primary btn-floating rounded-circle mb-3 mx-3 p-3"><i class="fa-solid fa-plus"></i></a>
             {% endif %}
             </div>
-            <!-- start -->
+            <!--collapse  -->
+            <div id="accordion">
             {% for module in course.modules.all %}
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-lg" data-toggle="collapse" data-target="#{{ module.title }}" aria-expanded="true" aria-controls="{{ module.title }}">
+                      <h4 class="" style="color: #0053cb;"><i class="fa-solid fa-circle-chevron-down"></i>    {{ module.title }}</h4>
+                      {% if user.profile.user_type == 'teacher'%}
+                      <a class="btn btn-primary ms-2 btn-sm" href="{% url 'new-page' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Topic</a>
+                      <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-quiz' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Quiz </a>
+                      <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-assignment' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Assignment</a>
+                      {% endif %}      
+                    </button>
+                  </h5>
+                </div>
+            
+                <div id="{{ module.title }}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                    <div>
+                      <ol class="list-group list-group-numbered">
+                      {% for page in module.pages.all %}
+                      <li class="list-group-item">
+                        <a href="{% url 'page-detail' course.id module.id page.id %}" class=""><i class="fa-solid fa-book"></i>{{ page.title }}</a>
+                        {% if page.id in page_completions %}Completed:<i class="fa-solid fa-circle"></i>{% else %}not Completed:<i class="fa-regular fa-circle"></i>{% endif %}                  
+                      </li>  
+                      {% endfor %}
+                      </ol>
+                      <ol class="list-group list-group-numbered">
+                      {% for quiz in module.quizzes.all %}
+                      <li class="list-group-item">
+                        <a href="{% url 'quiz-detail' course.id module.id quiz.id %}" class=""><i class="fa-brands fa-quora"></i>   {{ quiz.title }}</a>
+                        {% if quiz.id in quiz_completions %}Completed:<i class="fa-solid fa-circle"></i>{% else %}not Completed:<i class="fa-regular fa-circle"></i>{% endif %}                  
+                      </li>  
+                      {% endfor %}
+                      </ol>
+                      <ol class="list-group list-group-numbered">
+                      {% for assignment in module.assignments.all %}
+                      <li class="list-group-item">
+                        <a href="{% url 'assignment-detail' course.id module.id assignment.id %}" class=""><i class="fa-brands fa-adversal"></i>   {{ assignment.title }}</a>
+                        {% if assignment.id in assignment_completions %}Completed:<i class="fa-solid fa-circle"></i>{% else %}not Completed:<i class="fa-regular fa-circle"></i>{% endif %}                  
+                      </li>  
+                      {% endfor %}
+                      </ol>
+                    </div>    
+    
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>        
+            <!-- endcollapse -->
+            <!-- start -->
+
+            <!-- {% for module in course.modules.all %}
             <div class="mx-auto pb-2 gx-5 border-scandary  border rounded">
                 <h4 class="ms-2 py-3" style="color: #0053cb;">{{ module.title }}</h4>
                 {% if user.profile.user_type == 'teacher'%}
@@ -72,7 +125,8 @@
                   </ul>
                 </div>    
             </div>
-            {% endfor %}
+            {% endfor %} -->
+
             <!-- end -->     
          </div>
         </section>
