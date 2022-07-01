@@ -15,12 +15,15 @@
       <div class="col-md-3 gx-5 mb-4">
         <div class="bg-light gy-5 text-center hover-overlay ripple shadow-2-strong rounded-5 ">
           
+          {% if user.profile.user_type == 'teacher' %}
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'edit-course' course.id %}" class="text-decoration-none">Edit course</a></h4>
+          {% endif %}            
+
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'modules' course.id %}"class="text-decoration-none">units</a></h4>
-          <h4 class="border-scandary border-bottom py-4"><a href="#sub"class="text-decoration-none">Submissions</a></h4>
+          <h4 class="border-scandary border-bottom py-4"><a href="{% url 'submissions' course.id %}"class="text-decoration-none">Submissions</a></h4>
           <h4 class="border-scandary border-bottom py-4"><a href="#leader"class="text-decoration-none">Leaderboard</a></h4>
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'questions' course.id %}" class="text-decoration-none">Questions</a></h4>
-          {% if course.user.profile.user_type == 'teacher' %}
+          {% if user.profile.user_type == 'teacher' %}
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'student-submissions' course.id %}"class="text-decoration-none">Student Submissions</a></h4>
           {% endif %}            
       </div>
@@ -30,7 +33,7 @@
           <div class=" gx-5 unit">
             <div class="mx-auto d-flex flex-sm-wrap row gx-5 border-scandary  border-bottom mb-5">                
             <h2 class=" col-8 pb-3" style="color: #0053cb;">Add Question:   </h2>
-            {% if course.user.profile.user_type == 'teacher'%}
+            {% if user.profile.user_type == 'teacher'%}
             <a href="{% url 'new-student-question' course.id %}" class="col-1 btn btn-primary btn-floating rounded-circle mb-3 mx-3 p-3"><i class="fa-solid fa-plus"></i></a>
             {% endif %}
             </div>   
