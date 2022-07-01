@@ -1,71 +1,95 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %} {{ course.title }}/Grade {% endblock %}
 {% block content %}
-<div class="section">
-	<h4>{{ course.title }}</h4>
-	<div class="divider"></div>
-</div>
-
-<div class="row">
-
-<div class="col s3">
-      <ul class="collection with-header">
-        <li class="collection-header"><h4>Classroom</h4></li>
-        <a href="{% url 'course' course.id %" class="collection-item">Home</a>
-        <a href="{% url 'modules' course.id %}" class="collection-item">Module</a>
-        <a href="{% url 'submissions' course.id %}" class="collection-item">Submissions</a>
-        <a href="{% url 'questions' course.id %}" class="collection-item">Questions</a>
-
-        {% if teacher_mode == True %}
-          <li class="collection-header"><h4>Teacher</h4></li>
-          <a href="{% url 'student-submissions' course.id %" class="collection-item active">Student Submissions</a>
-        {% endif %}
-
-      </ul>
-</div>
-
-<div class="col s9">
-
-  <div class="section">
-    <h4><b>{{ grade.submission.user.get_full_name }}</b></h4>
-    <h5>@{{ grade.submission.user.username }}</h5>
-
-    <div class="col s12 center-align">
-      <div class="card-panel">
-        <h4 class="card-title">{{ grade.submission.comment }}</h4>
-        <a href="{{ grade.submission.file.url }}" download>
-        <i class="material-icons">download</i>{{ grade.submission.get_file_name }} - Download</a>      
+<br>
+<br>
+<br>
+<br>
+<div class="container mt-5 pt-3">
+  <h1 class="py-3 mx-auto ms-3" style="color: #0053cb;" >{{ course.title }}</h1>
+  <section>
+    <div class="row">
+      <div class="col-md-3 gx-5 mb-4">
+        <div class="bg-light gy-5 text-center hover-overlay ripple shadow-2-strong rounded-5 ">
+          
+          <h4 class="border-scandary border-bottom py-4"><a href="{% url 'edit-course' course.id %}" class="text-decoration-none">Edit course</a></h4>
+          <h4 class="border-scandary border-bottom py-4"><a href="{% url 'modules' course.id %}"class="text-decoration-none">units</a></h4>
+          <h4 class="border-scandary border-bottom py-4"><a href="#sub"class="text-decoration-none">Submissions</a></h4>
+          <h4 class="border-scandary border-bottom py-4"><a href="#leader"class="text-decoration-none">Leaderboard</a></h4>
+          <h4 class="border-scandary border-bottom py-4"><a href="{% url 'questions' course.id %}" class="text-decoration-none">Questions</a></h4>
+          {% if profile.user_type == 'teacher' %}
+          <h4 class="border-scandary border-bottom py-4"><a href="{% url 'student-submissions' course.id %}"class="text-decoration-none">Student Submissions</a></h4>
+          {% endif %}            
+        </div>
+      </div>
+      <div class="col-md-8 gx-5 mb-4">
+        <section class="container ">
+          
+          <table class="table">
+            <tr class="table-dark">
+              <th>Student Name</th>
+              <td>{{ grade.submission.user.get_full_name }}</td>
+            </tr>
+            <tr class="table-dark">
+              <th>Student Username</th>
+              <td>@{{ grade.submission.user.username }}</td>
+            </tr>
+            <tr class="table-dark">
+              <th>Student College_ID</th>
+              <td>{{ grade.submission.user.profile.college_id }}</td>
+            </tr>
+            <tr class="table-dark">
+              <th>Student E_mail</th>
+              <td>{{ grade.submission.user.email }}</td>
+            </tr>
+            <tr class="table-dark">
+              <th>Student Phone</th>
+              <td>{{ grade.submission.user.profile.phone }}</td>
+            </tr>
+            <tr class="table-dark">
+              <th>Student Univeristy</th>
+              <td>{{ grade.submission.user.profile.univeristy_name }}</td>
+            </tr>
+            <tr class="table-dark">
+              <th>Student Major</th>
+              <td>{{ grade.submission.user.profile.major_types }}</td>
+            </tr>
+            <tr class="table-active">
+              <th>Student Assignment_File</th>
+              <td>
+                {{ grade.submission.get_file_name }}
+                <a href="{{ grade.submission.file.url }}"download><i class="fa-solid fa-cloud-arrow-down"></i>Download</a>
+              </td>
+            </tr>
+            <tr class="table-active">
+              <th>Student comment on assignment</th>
+              <td>{{ grade.submission.comment }}</td>
+            </tr>
+          </table>
+      <!--  -->
+        <div class="">
+        <form method="post" action="{% url 'grade-submission' course.id grade.id %}" role="form" class="col s12">
+          {% csrf_token %}
+          <h4>Assignment maximum points: <b>{{ grade.submission.assignment.points }}</b></h4>
+      
+          <div class="input-field">
+            <i class="fa-solid fa-circle-plus"></i>
+            <i class="fa-solid fa-pen"></i>
+            <input id="icon_prefix" type="text" name="points" class="validate">
+            <label for="icon_prefix">Points</label>
+          </div>
+      
+          <div class="">
+            <button class="btn btn-primary" type="submit">Grade</button>
+          </div>
+        </form>
+        
+      </div>
+      
+        </section>
       </div>
     </div>
-
-  <div class="col s12">
-  <form method="post" action="{% url 'grade-submission' course.id grade.id %}" role="form" class="col s12">
-    {% csrf_token %}
-    <h4>Assignment maximum points: <b>{{ grade.submission.assignment.points }}</b></h4>
-
-    <div class="input-field col s12">
-      <i class="material-icons prefix">plus_one</i>
-      <input id="icon_prefix" type="text" name="points" class="validate">
-      <label for="icon_prefix">Points</label>
-    </div>
-
-    <div class="col s12">
-        <button type="submit" value="login" class="btn waves-effect waves-light">
-          Submit
-        </button>
-    </div>
-  </form>
+  </section>
 </div>
-
-
-
-
-  </div>
-  
-</div>
-
-
-</div>
-
 {% endblock %}

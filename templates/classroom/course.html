@@ -24,6 +24,22 @@
             
           </div>
         </div>
+        <div class="col-md-8">
+          <div class="card">
+            <img src="{{ course.picture.url }}"id="imgCard" class="img-fluid" style=" height: 300px;" />
+            
+          <div class="card-body">
+            <h3 class="card-title text-center" style="color: #0053cb;">{{ course.title }}</h3>
+            <p class="card-text text-muted text-center"><small>
+              {{ course.description }}</small>
+            </p>
+            <div class="row text-secondary mx-5 text-center">
+            <p class="col"><strong>{{ course.category }}</strong></p>
+            <p class="col"><strong>{{ course.enrolled.count }} students</strong></p>
+        </div>
+          </div>
+        </div>
+        </div>
       </div>
     </section>
 </div>
