@@ -134,6 +134,9 @@ nav {
                         <li class="nav-item  mx-3">
                             <a class="nav-link text-muted" aria-current="page" href="{% url 'index' %}" target="_blank">Home</a>
                         </li>
+                        <li class="nav-item  mx-3">
+                            <a class="nav-link text-muted" href="{% url 'leaderboard'%}">Leaderboard</a>
+                        </li> 
                         {% endif %}
                        {% if user.profile.user_type == 'student' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
@@ -143,9 +146,6 @@ nav {
                            <a class="nav-link text-muted" href="{% url 'scheduale'%}" target="_blank">Scheduale</a>
                        </li>
                        {% endif %}
-                       <li class="nav-item  mx-3">
-                           <a class="nav-link text-muted" href="{% url 'leaderboard'%}">Leaderboard</a>
-                       </li>
                         {% if user.profile.user_type == 'teacher' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'my-courses'%}" target="_blank">My Courses</a>
