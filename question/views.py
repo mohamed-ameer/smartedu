@@ -85,6 +85,7 @@ def MarkAsAnswer(request, course_id, question_id, answer_id):
 		answer.save()
 		question.has_accepted_answer = True
 		question.save()
+		print('done')
 		return redirect('question-detail', course_id=course_id, question_id=question_id)
 	else:
 		return HttpResponseForbidden()

@@ -33,8 +33,8 @@
           <div class=" gx-5 unit">
             <div class="mx-auto d-flex flex-sm-wrap row gx-5 border-scandary  border-bottom mb-5">                
             <h2 class=" col-8 pb-3" style="color: #0053cb;">Add Question:   </h2>
-            {% if user.profile.user_type == 'teacher'%}
             <a href="{% url 'new-student-question' course.id %}" class="col-1 btn btn-primary btn-floating rounded-circle mb-3 mx-3 p-3"><i class="fa-solid fa-plus"></i></a>
+            {% if user.profile.user_type == 'teacher'%}
             {% endif %}
             </div>   
             <!-- start -->

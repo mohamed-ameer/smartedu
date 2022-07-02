@@ -56,7 +56,7 @@
             <form method="post" action="{% url 'submit-quiz' course_id module_id quiz.id %}" role="form" class="col s12">
               {% csrf_token %}
               {% for question in quiz.questions.all %}
-              <h5 class=" mb-2 ">{{ question.question_text }}</h5>
+              <h5 class=" mb-2 ">({{ forloop.counter }}){{ question.question_text }}</h5>
               <div class="form-check  mb-3">
                  <input class="form-check-input" type="hidden" value="{{ question.id }}" name="question">
              </div> 

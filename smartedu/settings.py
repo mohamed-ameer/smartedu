@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'question',
     'assignment',
     'completion',
+    'notifications',
     # chat apps
     'videochat',
     'base',

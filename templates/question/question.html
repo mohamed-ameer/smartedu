@@ -23,8 +23,10 @@
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'submissions' course.id %}"class="text-decoration-none">Submissions</a></h4>
           
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'questions' course.id %}" class="text-decoration-none">Questions</a></h4>
-          {% if question.user.profile.user_type == 'teacher' %}
+          {% if user.profile.user_type == 'teacher' %}
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'student-submissions' course.id %}"class="text-decoration-none">Student Submissions</a></h4>
+          {% else %}
+
           {% endif %}            
       </div>
       </div>
@@ -78,8 +80,11 @@
                 <div class="card-panel grey lighten-5 z-depth-2">
           
                 {% if answer.is_accepted_answer == True %}
-                <div class="col s12 right-align">
-                  <i class="material-icons medium green-text">done</i>
+                <div class="col s12 right-align" style="color:rgb(5, 88, 254);">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"/>
+                  </svg>
+                  <span class="h5">Correct Answer</span>
                 </div>
                 {% endif %}
           
@@ -102,8 +107,8 @@
                 </div>
           
                 <div class="col s12">
-                  <a href="" class="vote" vote-type="U" answer-id="{{ answer.id }}"><i class="fas fa-thumbs-up"></i></a>  
-                  <a href="" class="vote" vote-type="D" answer-id="{{ answer.id }}"><i class="fa-solid fa-thumbs-down"></i></a> 
+                  <a href="" class="vote" vote-type="U" answer-id="{{ answer.id }}"><i class="fas fa-thumbs-up"></i>Up vote</a>  
+                  <a href="" class="vote" vote-type="D" answer-id="{{ answer.id }}"><i class="fa-solid fa-thumbs-down"></i>Down vote</a> 
           
                   {% if moderator == True %}
                     <a href="{% url 'mark-as-answer' course.id question.id answer.id %}"><i class="fa-solid fa-check"></i>Mark as answer</a>
