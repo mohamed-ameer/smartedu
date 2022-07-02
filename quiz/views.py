@@ -7,6 +7,7 @@ from quiz.models import Answer, Question, Quizzes, Attempter, Attempt
 from module.models import Module
 from completion.models import Completion
 from app_users.models import Profile
+from scheduale.models import *
 # Create your views here.
 
 def NewQuiz(request, course_id, module_id):
@@ -22,6 +23,8 @@ def NewQuiz(request, course_id, module_id):
             quiz = Quizzes.objects.create(user=user, title=title, due=due, time_limit_mins=time_limit_mins)
             module.quizzes.add(quiz)
             module.save()
+            QuizScheduale.objects.create(user=user,course=course,module=module,quiz=quiz,title=title,due=due)   
+            print('quiz scheduale done')         
             return redirect('new-question', course_id=course_id, module_id=module_id, quiz_id=quiz.id)
     else:
         form = NewQuizForm()

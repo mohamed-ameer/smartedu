@@ -6,80 +6,28 @@
  
 <section class="container position-relative my-5 pt-5 pb-5 ">
    
-    <div aria-label="breadcrumb mb-5">
-        <ol class="breadcrumb pt-5 mt-5">
-            <li class="breadcrumb-item "><a href="{% url 'index' %}"class=" text-decoration-none text-dark">Home</a></li>
-            <li class="breadcrumb-item active text-decoration-none"><a style=" color: #0053cb;" >Scehdule</a></li>
-        </ol>
-      <h1 class="mb-5 pt-2">Scehdule</h1>
-
-      <div class="btn-group me-2 border-bottom border-bottom-1 border-bottom-secondary" role="group" aria-label="Second group">
-        <button type="button" class="btn text-primary border-bottom border-bottom-light">All</button>
-        <button type="button" class="btn ">Upcoming</button>
-      </div>
-      
-    <div class=" d-flex row mb-5 border border-light rounded me-5 px-2 py-3 mt-5"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+<div aria-label="breadcrumb mb-5">
+      <h1 class="mb-5 pt-2">Scehduale</h1>
+      <!-- for -->
+    <div class="mt-5 mb-3 row border  ms-4 border-light shadow p-3 bg-white rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
         <div class="col-6"> <h5>First unit quiz</h5>
         
-         <img  src="{% static 'images/icon/watch.png' %}" alt="watch">
-         <p style="display: inline;" class="fst-italic fw-light text-muted" >17th of March: 10:00PM</p>
-     </div>
-     <div class="col-3"></div>
+           <i class=" fs-6 fa-solid fa-hourglass-start text-muted me-2"></i>
+           <p style="display: inline;" class="fst-italic fw-light text-muted" >17th of March: 10:00PM</p>
+        </div>
+        <div class="col-3"></div>
      
         <div class="col-3">
             <div class="rounded-pill  me-5 d-flex align-items-center bg-light  text-primary mt-3">
                 <p class="mx-auto my-auto py-1">Artificial Intelligence</p>
             </div>
         </div>
-     </div>
-    <div class=" d-flex row mb-5 border border-light rounded me-5 px-2 py-3 "  data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="col-6"> <h5>Second Quiz</h5>
-        
-         <img  src="{% static 'images/icon/watch.png' %}" alt="watch">
-         <p style="display: inline;" class="fst-italic fw-light text-muted" >18 Mar, 10:00PM</p>
-     </div>
-     <div class="col-3"></div>
-     
-        <div class="col-3">
-            <div class="rounded-pill  me-5 d-flex align-items-center bg-light  text-primary mt-3">
-                <p class="mx-auto my-auto py-1 text-danger">Digital Communication</p>
-            </div>
-        </div>
-     </div>
-    <div class=" d-flex row mb-5 border border-light rounded me-5 px-2 py-3 "  data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="col-6"> <h5>Assignment #2</h5>
-        
-         <img  src="{% static 'images/icon/watch.png' %}" alt="watch">
-         <p style="display: inline;" class="fst-italic fw-light text-muted" >17th of March</p>
-     </div>
-     <div class="col-3"></div>
-     
-        <div class="col-3">
-            <div class="rounded-pill  me-5 d-flex align-items-center bg-light  text-primary mt-3">
-                <p class="mx-auto my-auto py-1 text-secondary">Java advanced course</p>
-            </div>
-        </div>
-     </div>
-    <div class=" d-flex row mb-5 border border-light rounded me-5 px-2 py-3 "  data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="col-6"> <h5>Assignment #1</h5>
-        
-         <img  src="{% static 'images/icon/watch.png' %}" alt="watch">
-         <p style="display: inline;" class="fst-italic fw-light text-muted" >17th of March</p>
-     </div>
-     <div class="col-3"></div>
-     
-        <div class="col-3">
-            <div class="rounded-pill  me-5 d-flex align-items-center bg-light  text-primary mt-3">
-                <p class="mx-auto my-auto py-1 text-secondary">Java advanced course</p>
-            </div>
-        </div>
-     </div>
-     
-     
     </div>
-
+    <!-- endfor -->
+</div>
 
 </section>
+
 
 {% endblock %}
 {% block javascript %}

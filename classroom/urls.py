@@ -3,6 +3,7 @@ from classroom.views import Categories, CategoryCourses, NewCourse, Enroll, Dele
 from classroom.views import *
 
 from module.views import NewModule, CourseModules
+from scheduale.views import Scheduale
 from page.views import NewPageModule, PageDetail, MarkPageAsDone
 from quiz.views import NewQuiz, NewQuestion, QuizDetail, TakeQuiz, SubmitAttempt, AttemptDetail
 from assignment.views import NewAssignment, AssignmentDetail, NewSubmission

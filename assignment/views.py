@@ -8,6 +8,7 @@ from app_users.models import Profile
 from module.models import Module
 from classroom.models import Course, Grade
 from completion.models import Completion
+from scheduale.models import AssignmentScheduale
 
 # Create your views here.
 def NewAssignment(request, course_id, module_id):
@@ -36,6 +37,8 @@ def NewAssignment(request, course_id, module_id):
                 a.files.set(files_objs)
                 a.save()
                 module.assignments.add(a)
+                AssignmentScheduale.objects.create(user=user,course=course,module=module,assignment=a,title=title,due=due)
+                print('scheduale object done')
                 return redirect('modules', course_id=course_id)
         else:
             form = NewAssignmentForm()

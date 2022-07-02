@@ -27,9 +27,9 @@ def Categories(request):
     }
     return render(request, 'classroom/categories.html', context)
 
-def Scheduale(request):
+# def Scheduale(request):
 
-    return render(request, 'classroom/Scheduale.html')
+#     return render(request, 'classroom/Scheduale.html')
 def Activity(request):
     user = request.user
     courses = Course.objects.filter(enrolled=user)
