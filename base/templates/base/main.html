@@ -128,7 +128,7 @@ nav {
                        {% endif %}
                     </ul>
                     {% if user.is_authenticated %}
-                    <i class="fa-solid fa-bell pe-4 text-secondary"></i>
+                    <!-- <i class="fa-solid fa-bell pe-4 text-secondary"></i> -->
                         <div class="dropdown  ">
                             <button class="btn rounded-pill border-2 border-light dropdown-toggle pL-5 d-flex align-items-center " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 {% if nav_profile.picture %}
@@ -137,7 +137,7 @@ nav {
                                 <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="photo" style="width:50px ;">
                                 {% endif %}
                                 <p class="mt-2">{{nav_profile}}</p>
-                              <!-- <div class="rounded-pill btn-primary px-1"  >8866</div> عدد النقط اللي جمعها -->
+                                <div class="rounded-pill btn-primary px-1">{{nav_profile.points}}</div>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                               
