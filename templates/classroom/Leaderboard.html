@@ -43,7 +43,7 @@
               </td>
               <td class="firstName">
                 {% if profile.picture %}
-                <img src="{{ profile.picture.url }}" class="rounded-circle" alt="photo" style="width: 100px;height: 100px;">
+                <img src="{{ profile.picture.url}}" class="rounded-circle" alt="photo" style="width: 100px;height: 100px;">
                 {% else %}
                 <img src="{% static 'images/no_avatar.jpg' %}" class="rounded-circle" alt="photo" style="width:100px ;">
                 {% endif %}
@@ -74,27 +74,6 @@
     </div>
    </div>
     <!--  -->
-<!-- start loop -->
-<!-- {% for profile in profiles %}
-    <div class="my-5 pt-5">
-        <div class=" d-flex row "  data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="col-1 rounded-circle ">
-            {% if profile.picture %}
-            <img src="{{ nav_profile.picture.url }}" class="nav-img rounded-circle pe-1 " alt="photo" style="width: 100px;height: 100px;">
-            {% else %}
-            <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="photo" style="width:100px ;">
-            {% endif %}
-        </div>        
-        <div class="col-6 "> <h5 style="display: inline-block; font-weight: bold;" >{{profile.user.username}}</h5></p>
-    </div>
-    <div class="col-3 d-flex align-items-center text-muted">        
-            <p class="mx-auto my-auto py-1">{{profile.points}}</p>        
-    </div>
-    <hr style="width: 80%;" class="my-3">
-        </div>
-    </div>
-{% endfor %}     -->
-<!-- end -->
     </section>
     {% endblock %}
     {% block javascript %}

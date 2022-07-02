@@ -68,6 +68,7 @@ class Profile(models.Model):
     def modify_points(self, added_points):
         self.points += added_points
         self.save()
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         SIZE = 250, 250
