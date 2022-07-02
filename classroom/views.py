@@ -39,7 +39,7 @@ def Activity(request):
     }
     return render(request, 'classroom/Activity.html', context)
 def Leaderboard(request):
-    profiles =Profile.objects.all().order_by("-points")
+    profiles =Profile.objects.all().filter(user_type='student').order_by("-points")
     context = {
         'profiles': profiles,
     }
