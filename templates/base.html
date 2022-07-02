@@ -135,17 +135,17 @@ nav {
                             <a class="nav-link text-muted" aria-current="page" href="{% url 'index' %}" target="_blank">Home</a>
                         </li>
                         {% endif %}
-                    {% if user.profile.user_type == 'student' or user.is_superuser %}                       
+                       {% if user.profile.user_type == 'student' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'all-courses'%}" target="_blank">Courses</a>
                        </li>
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'scheduale'%}" target="_blank">Scheduale</a>
                        </li>
+                       {% endif %}
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'leaderboard'%}">Leaderboard</a>
                        </li>
-                       {% endif %}
                         {% if user.profile.user_type == 'teacher' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
                            <a class="nav-link text-muted" href="{% url 'my-courses'%}" target="_blank">My Courses</a>
@@ -170,7 +170,9 @@ nav {
                                 <img src="{% static 'images/no_avatar.jpg' %}" class="nav-img rounded-circle pe-1 " alt="photo" style="width:50px ;">
                                 {% endif %}
                                 <p class="mt-2">{{nav_profile}}</p>
+                                {% if user.profile.user_type == 'student' %}
                                 <div class="rounded-pill btn-primary px-1">{{nav_profile.points}}</div>
+                                {% endif %}
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 {% if user.profile.user_type == 'student' or user.is_superuser %}

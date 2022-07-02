@@ -19,7 +19,10 @@
           {% endif %}            
 
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'modules' course.id %}"class="text-decoration-none">units</a></h4>
+                    {% if user.profile.user_type == 'student' %}
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'submissions' course.id %}"class="text-decoration-none">Submissions</a></h4>
+          {% endif %}
+
           
           <h4 class="border-scandary border-bottom py-4"><a href="{% url 'questions' course.id %}" class="text-decoration-none">Questions</a></h4>          
           {% if user.profile.user_type == 'teacher' %}

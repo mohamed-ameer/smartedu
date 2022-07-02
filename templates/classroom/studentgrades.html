@@ -28,6 +28,7 @@
   </thead>
   <tbody>
     {% for grade in grades %}
+    {% if grade.submission.user.profile.user_type == 'student' %}    
     <tr class="table-info">
       <td>{{ grade.submission.user.get_full_name }}</td>
       <td>@{{ grade.submission.user.username }}</td>
@@ -41,6 +42,7 @@
       <td>Dr/ {{ grade.graded_by.get_full_name }}</td>
       <td><a href="{% url 'grade-submission' course.id grade.id %}"><i class="fa-solid fa-pen"></i>Grade</a></td>
     </tr>
+  {% endif %}
   {% endfor %}
 </tbody>
       </table>

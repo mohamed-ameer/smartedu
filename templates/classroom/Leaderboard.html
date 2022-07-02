@@ -33,6 +33,7 @@
           </thead>
           <tbody>
           {% for profile in profiles %}
+          {% if profile.user_type == 'student' %}
             <tr class="table-row lineage">
               <th scope="row">
                 {{ forloop.counter }}
@@ -42,7 +43,7 @@
               </td>
               <td class="firstName">
                 {% if profile.picture %}
-                <img src="{{ nav_profile.picture.url }}" class="rounded-circle" alt="photo" style="width: 100px;height: 100px;">
+                <img src="{{ profile.picture.url }}" class="rounded-circle" alt="photo" style="width: 100px;height: 100px;">
                 {% else %}
                 <img src="{% static 'images/no_avatar.jpg' %}" class="rounded-circle" alt="photo" style="width:100px ;">
                 {% endif %}
@@ -65,6 +66,7 @@
                 {{ profile.user.lastName }}
               </td>
             </tr>
+          {% endif %}
           {% endfor %}
         </tbody>
       </table>
