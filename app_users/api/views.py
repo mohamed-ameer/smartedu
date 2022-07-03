@@ -1,10 +1,11 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status,viewsets
 from rest_framework.permissions import BasePermission,AllowAny, SAFE_METHODS
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from .serializers import *
+from app_users.models import *
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.views import APIView
 
@@ -42,4 +43,7 @@ class LogoutView(APIView):
         request.auth.delete()
         return Response(status=status.HTTP_200_OK)
 
-
+# ##################################################################
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = GetProfileSerializer

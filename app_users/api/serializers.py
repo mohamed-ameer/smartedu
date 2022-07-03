@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from app_users.models import *
+# get put update delete profile data
+class GetProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Profile
+        fields='__all__'
 
+# authentication
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=Profile
@@ -23,3 +29,4 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
