@@ -61,6 +61,9 @@ INSTALLED_APPS = [
     'base',
     'channels',
     'room',
+    # api
+    'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -73,6 +76,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK ={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
+
 
 ROOT_URLCONF = 'smartedu.urls'
 

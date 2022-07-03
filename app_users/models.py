@@ -4,6 +4,8 @@ import os
 from django.db.models.signals import post_save
 from PIL import Image
 from django.conf import settings
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -102,3 +104,8 @@ def save_user_profile(sender, instance, **kwargs):
 
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
