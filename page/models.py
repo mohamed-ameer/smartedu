@@ -34,7 +34,7 @@ class Comment(models.Model):
 	comm=models.TextField()
 	time=models.DateTimeField(auto_now_add=True,auto_now=False)
 	def __str__(self):
-		return self.content
+		return self.comm
 class Reply(models.Model):
 	user=models.ForeignKey(User,on_delete=models.CASCADE)
 	page=models.ForeignKey(Page,on_delete=models.CASCADE,null=True)
@@ -42,4 +42,4 @@ class Reply(models.Model):
 	time=models.DateTimeField(auto_now_add=True,auto_now=False)
 	comment=models.ForeignKey(Comment,on_delete=models.CASCADE)
 	def __str__(self):
-		return self.reply_content
+		return self.comm

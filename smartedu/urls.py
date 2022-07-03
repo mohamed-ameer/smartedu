@@ -28,6 +28,16 @@ urlpatterns = [
     path('', include('base.urls')),
     path('rooms/', include('room.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include('app_users.api.urls')),    
+    path('api/app_users/', include('app_users.api.urls')),    
+    path('api/assignment/', include('assignment.api.urls')),    
+    path('api/base/', include('base.api.urls')),    
+    path('api/classroom/', include('classroom.api.urls')),    
+    path('api/completion/', include('completion.api.urls')),    
+    path('api/module/', include('module.api.urls')),    
+    path('api/page/', include('page.api.urls')),    
+    path('api/question/', include('question.api.urls')),    
+    path('api/quiz/', include('quiz.api.urls')),    
+    path('api/room/', include('room.api.urls')),    
+    path('api/scheduale/', include('scheduale.api.urls')),    
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
