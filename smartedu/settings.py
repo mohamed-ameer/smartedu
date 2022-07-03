@@ -82,7 +82,12 @@ REST_FRAMEWORK ={
         'rest_framework.authentication.TokenAuthentication'
     ]
 }
-
+# https://www.rootstrap.com/blog/registration-and-authentication-in-django-apps-with-dj-rest-auth/
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ROOT_URLCONF = 'smartedu.urls'
 
