@@ -9,7 +9,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.views import APIView
 
 class SignupView(generics.GenericAPIView):
-    serializer_class=UserSerializer  
+    serializer_class=UserSerializer 
     permission_classes = [AllowAny]
     def post(self, request, *args, **kwargs):
         serializer=self.get_serializer(data=request.data)
@@ -17,6 +17,7 @@ class SignupView(generics.GenericAPIView):
         user=serializer.save()
         return Response({
             "user":UserSerializer(user, context=self.get_serializer_context()).data,
+            "profile":Profile.objects.get(user=user).user_type,
             "token":Token.objects.get(user=user).key,
             "message":"account created successfully"
         })
