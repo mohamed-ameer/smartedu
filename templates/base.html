@@ -23,36 +23,12 @@ body {
 .gradient-custom {
 /* fallback for old browsers */
 background: #0053cb;
-
 /* Chrome 10-25, Safari 5.1-6 */
 background: -webkit-linear-gradient(to right bottom, #0053cb, #90caf9);
-
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 background: linear-gradient(to right bottom, #0053cb, #90caf9)
 }   
-footer {
-  top: 322px;
-  position: relative;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 80px 154px;
-  height: 224px;
-
-  background: #0053cb;
-
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
-
-  color: #ffffff;
-}
-nav {
-  /* width: 1440px; */
+.nav {
   height: 90px;
 }
 </style>
@@ -216,19 +192,28 @@ nav {
       <!--  Scripts-->
     {% block javascript %}
     {% endblock %}
-    <footer class="container-fluid">
-        <div class="container d-flex bd-highlight">
-            <div class="p-2 my-5 flex-grow-1 bd-highlight"><img style=" width:20%;" src="{% static 'images/5.png' %}"alt="logo"></div>
-            <div class="p-2 my-3 d-flex flex-column bd-highlight mb-3">
-                <div class="p-2 bd-highlight">Google play</div>
-                <div class="p-2 bd-highlight">App store</div>
+    <footer class="container-fluid mt-5 py-5 text-white relative-bottom"style="background: #0053cb;">
+        <div class="row">
+            <div class="col ms-4">
+                <img src="{% static 'images/5.png' %}"alt="logo"> 
             </div>
-            <div class="p-2 my-3 d-flex flex-column bd-highlight mb-3">
-                <div class="p-2 bd-highlight">About us</div>
-                <div class="p-2 bd-highlight"><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact Us</a></div>
+            <div class="col-2 mt-3 ms-4">
+                <div class="row">
+                <a href="https://documenter.getpostman.com/view/19584619/UzJFwJhM" class="  mb-2 text-decoration-none text-white" target="_blank">APIs</a>
+                <a class="   text-decoration-none text-white">App store</a>
+        
+        </div>
+            </div>
+            <div class="col-2 mt-3">
+        <div class="row">
+            <a class=" mb-2 text-decoration-none text-white">About us</a>
+            <a href="{% url 'contact' %}" class="  text-decoration-none text-white" target="_blank">Contact us</a>
+        </div>
             </div>
         </div>
     </footer>
+
+
   
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
