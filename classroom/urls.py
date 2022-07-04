@@ -6,6 +6,7 @@ from module.views import NewModule, CourseModules
 from scheduale.views import Scheduale
 from page.views import NewPageModule, PageDetail, MarkPageAsDone
 from quiz.views import NewQuiz, NewQuestion, QuizDetail, TakeQuiz, SubmitAttempt, AttemptDetail
+from quizai.views import NewQuizAI, NewQuestionAI, QuizDetailAI, TakeQuizAI, SubmitAttemptAI, AttemptDetailAI
 from assignment.views import NewAssignment, AssignmentDetail, NewSubmission
 from question.views import NewStudentQuestion, Questions, QuestionDetail, MarkAsAnswer, VoteAnswer
 
@@ -38,6 +39,13 @@ urlpatterns = [
 	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/take', TakeQuiz, name='take-quiz'),
 	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/take/submit', SubmitAttempt, name='submit-quiz'),
 	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/<attempt_id>/results', AttemptDetail, name='attempt-detail'),
+	# #Quizzes_ai
+	path('<course_id>/modules/<module_id>/quiz/newquizai', NewQuizAI, name='new-quizai'),
+	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/newquestionai', NewQuestionAI, name='new-questionai'),
+	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/detailai', QuizDetailAI, name='quiz-detailai'),
+	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/takeai', TakeQuizAI, name='take-quizai'),
+	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/take/submitai', SubmitAttemptAI, name='submit-quizai'),
+	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/<attempt_id>/resultsai', AttemptDetailAI, name='attempt-detailai'),
 	# #Assignment
 	path('<course_id>/modules/<module_id>/assignment/newassignment', NewAssignment, name='new-assignment'),
 	path('<course_id>/modules/<module_id>/assignment/<assignment_id>', AssignmentDetail, name='assignment-detail'),

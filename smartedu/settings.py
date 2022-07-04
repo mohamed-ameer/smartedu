@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'module',
     'page',
     'quiz',
+    'quizai',
     'question',
     'assignment',
     'completion',

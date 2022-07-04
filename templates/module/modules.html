@@ -49,6 +49,7 @@
                       {% if user.profile.user_type == 'teacher'%}
                       <a class="btn btn-primary ms-2 btn-sm" href="{% url 'new-page' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Topic</a>
                       <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-quiz' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Quiz </a>
+                      <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-quizai' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Quiz using AI </a>
                       <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-assignment' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Assignment</a>
                       {% endif %}      
                     </button>
