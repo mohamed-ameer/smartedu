@@ -9,7 +9,30 @@ from module.models import Module
 from classroom.models import Course, Grade
 from completion.models import Completion
 from scheduale.models import AssignmentScheduale
+# marcoo
+from difflib import SequenceMatcher as sm
+import subprocess
+import os
+def executeJavaDoctor(fjava,fjavawithout):
+   global Java_Output_doctor
+   s = subprocess.getoutput(str("javac " + str(fjava) + ";java " +str(fjavawithout)))
+   Java_Output_doctor=s
+   print("Java_Output_doctor is : " + Java_Output_doctor)
 
+def executeJavaStudent():
+   global Java_Output_student
+   #s = subprocess.check_output("javac SumOfNumbers2.java;java SumOfNumbers2",isinstance(input,int),subprocess.errno,stdin = data, shell = True)
+   s = subprocess.getoutput("javac HelloWorldStudent.java;java HelloWorldStudent")
+   Java_Output_student=s
+   print("Java_Output_student is : " + Java_Output_student)  
+# Driver function
+if __name__=="__main__":
+    executeJavaDoctor()
+    executeJavaStudent()
+    similarity=sm(None,Java_Output_doctor,Java_Output_student).ratio()
+    Final_degree=similarity*5#point int(points) مكان ال 5
+    print(Final_degree) #degree of student
+# end marcoo
 # Create your views here.
 def NewAssignment(request, course_id, module_id):
     user = request.user
@@ -26,19 +49,26 @@ def NewAssignment(request, course_id, module_id):
                 title = form.cleaned_data.get('title')
                 points = form.cleaned_data.get('points')
                 due = form.cleaned_data.get('due')
-                files = request.FILES.getlist('files')
-
-                for file in files:
-                    file_instance = AssignmentFileContent(file=file, user=user)
-                    file_instance.save()
-                    files_objs.append(file_instance)
-
-                a = Assignment.objects.create(title=title, points=points, due=due, user=user)
-                a.files.set(files_objs)
+                assignment_type = form.cleaned_data.get('assignment_type')
+                language_type = form.cleaned_data.get('language_type')
+                # files = request.FILES.getlist('files')
+                # for file in files:
+                #     file_instance = AssignmentFileContent(file=file, user=user)
+                #     file_instance.save()
+                #     files_objs.append(file_instance)
+                file = request.FILES.get('file')
+                a = Assignment.objects.create(title=title, points=points,file=file,assignment_type=assignment_type ,language_type=language_type,due=due, user=user)
+                # a.files.set(files_objs)
                 a.save()
                 module.assignments.add(a)
                 AssignmentScheduale.objects.create(user=user,course=course,module=module,assignment=a,title=title,due=due)
                 print('scheduale object done')
+                if a.assignment_type == 'Programming_File' and a.language_type == 'Java':
+                    # marcoo functions
+                    filejava=os.path.basename(file.name)#HelloWorldDoctor.java
+                    filejavawithoutext=os.path.splitext(filejava)[0] #HelloWorldDoctor
+                    executeJavaDoctor(filejava,filejavawithoutext)
+                    print(filejavawithoutext)
                 return redirect('modules', course_id=course_id)
         else:
             form = NewAssignmentForm()
@@ -48,7 +78,9 @@ def NewAssignment(request, course_id, module_id):
     }
     return render(request, 'assignment/newassignment.html', context)
 
+# Edit assignment
 
+# 
 def AssignmentDetail(request, course_id, module_id, assignment_id):
     user = request.user
     module = get_object_or_404(Module, id=module_id)

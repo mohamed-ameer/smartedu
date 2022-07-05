@@ -29,15 +29,15 @@ def NewPageModule(request, course_id, module_id):
                 title = form.cleaned_data.get('title')
                 video_url = form.cleaned_data.get('video_url')
                 description = form.cleaned_data.get('description')
-                files = request.FILES.getlist('files')
+                file = request.FILES.get('file')
+                # files = request.FILES.getlist('files')
+                # for file in files:
+                #     file_instance = PostFileContent(file=file, user=user)
+                #     file_instance.save()
+                #     files_objs.append(file_instance)
 
-                for file in files:
-                    file_instance = PostFileContent(file=file, user=user)
-                    file_instance.save()
-                    files_objs.append(file_instance)
-
-                p = Page.objects.create(title=title,video_url=video_url,description=description, user=user)
-                p.files.set(files_objs)
+                p = Page.objects.create(title=title,file=file,video_url=video_url,description=description, user=user)
+                # p.files.set(files_objs)
                 p.save()
                 module.pages.add(p)
                 return redirect('modules', course_id=course_id)
@@ -49,7 +49,44 @@ def NewPageModule(request, course_id, module_id):
 
     return render(request, 'page/newpage.html', context)
 
+# Edit page
+@login_required
+def EditPage(request, course_id, module_id,page_id):
+    user = request.user
+    page = get_object_or_404(Page, id=page_id)
+    course = get_object_or_404(Course, id=course_id)
+    module = get_object_or_404(Module, id=module_id)
+    files_objs = []    
+    if user != course.user:
+        return HttpResponseForbidden()
+    else:
+        if request.method == 'POST':
+            form = NewPageForm(request.POST, request.FILES,instance=page)
+            if form.is_valid():
+                page.title = form.cleaned_data.get('title')
+                page.video_url = form.cleaned_data.get('video_url')
+                page.description = form.cleaned_data.get('description')
+                page.file = request.FILES.get('file')
+                # page.files = request.FILES.getlist('files')
+                # for file in page.files:
+                #     file_instance = PostFileContent(file=file, user=user)
+                #     file_instance.save()
+                #     files_objs.append(file_instance)
+                page.save()
+                return redirect('modules', course_id=course_id)
+        else:
+            form = NewPageForm()
 
+    context = {
+        'form': form,
+        'course': course,
+        'module':module,
+    }
+
+    return render(request, 'classroom/editpage.html', context)
+
+
+# 
 def PageDetail(request, course_id, module_id, page_id):
     user=request.user    
     page = get_object_or_404(Page, id=page_id)
@@ -85,6 +122,7 @@ def PageDetail(request, course_id, module_id, page_id):
         'completed': completed,
         'course_id': course_id,
         'module_id': module_id,
+        'page_id': page_id,
     }
     return render(request, 'page/page.html', context)
 

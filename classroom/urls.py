@@ -4,7 +4,7 @@ from classroom.views import *
 
 from module.views import NewModule, CourseModules
 from scheduale.views import Scheduale
-from page.views import NewPageModule, PageDetail, MarkPageAsDone
+from page.views import *
 from quiz.views import NewQuiz, NewQuestion, QuizDetail, TakeQuiz, SubmitAttempt, AttemptDetail
 from quizai.views import NewQuizAI, NewQuestionAI, QuizDetailAI, TakeQuizAI, SubmitAttemptAI, AttemptDetailAI
 from assignment.views import NewAssignment, AssignmentDetail, NewSubmission
@@ -32,6 +32,7 @@ urlpatterns = [
 	path('<course_id>/modules/<module_id>/pages/newpage', NewPageModule, name='new-page'),
 	path('<course_id>/modules/<module_id>/pages/<page_id>', PageDetail, name='page-detail'),
 	path('<course_id>/modules/<module_id>/pages/<page_id>/done', MarkPageAsDone, name='mark-page-as-done'),
+	path('<course_id>/modules/<module_id>/pages/<page_id>/editpage', EditPage, name='editage'),
 	# #Quizzes
 	path('<course_id>/modules/<module_id>/quiz/newquiz', NewQuiz, name='new-quiz'),
 	path('<course_id>/modules/<module_id>/quiz/<quiz_id>/newquestion', NewQuestion, name='new-question'),
