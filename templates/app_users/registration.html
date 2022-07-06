@@ -26,10 +26,10 @@
                                 aria-label="Slide 3"></button>
                         </div>
                     </div>
-                    <div class="carousel-inner py-3 text-center mx-auto ">
+                    <div class="carousel-inner py-3 text-center mx-auto mb-5">
                         <div class="carousel-item active" data-bs-interval="1000">
                             <img src="{% static 'images/Auth1.png'%}" alt="photo" style="width:40%; ">
-                            <p class="text-center ">No more frequent flaws, no boundaries between the
+                            <p class="text-center pb-4">No more frequent flaws, no boundaries between the
                                 teacher and his students.</p>
                         </div>
                         <div class="carousel-item" data-bs-interval="1000">
@@ -66,14 +66,14 @@
             {% csrf_token %}
             {{ user_form|crispy }}
             {{ profile_form|crispy }}            
-            <div class=" border border-2 border-light p-3 rounded rounded-5 my-3 form-check2 ">           
+            <!-- <div class=" border border-2 border-light p-3 rounded rounded-5 my-3 form-check2 ">           
                 <input type="checkbox" class="form-check-input" id="#"required>
                 <label class=" opacity-75 form-check-label text-primary" for="#">You have read and agree our <a href="#" class=" fw-bold text-decoration-none"style="color: #0058e6;" >Privacy Policy</a> </label>
                 <br>
                 <br>
                 <input type="checkbox" class=" form-check-input" id="#"required>
                 <label class="text-muted form-check-label text-center=" for="#">I am not a Robot  </label>       
-            </div>
+            </div> -->
             <div class="row justify-content-center">
             <input type="submit" value="Register" class="btn bg-primary text-white btn-lg mt-3">
             </div>
