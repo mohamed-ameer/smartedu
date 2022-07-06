@@ -53,7 +53,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,primary_key=True, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to=user_directory_path_profile, blank=True, null=True, verbose_name='Picture')
     phone = models.CharField(max_length=15)
-    college_id = models.CharField(max_length=20)
+    college_id = models.CharField(max_length=20,unique=True)
     univeristy_name = models.CharField(max_length=30, choices=university, default='Zagazig_University')
     major_types = models.CharField(max_length=30, choices=major_types, default='electrical_engineering')
     facebook =models.URLField(max_length=200, blank=True)

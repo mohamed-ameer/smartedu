@@ -40,8 +40,10 @@ def Activity(request):
     return render(request, 'classroom/Activity.html', context)
 def Leaderboard(request):
     profiles =Profile.objects.all().filter(user_type='student').order_by("-points")
+    myFilter=ProfileFilter(request.GET,queryset=profiles)
+    profiles =myFilter.qs
     context = {
-        'profiles': profiles,
+        'profiles': profiles,'myFilter':myFilter
     }
     return render(request, 'classroom/Leaderboard.html', context)
 
