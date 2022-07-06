@@ -43,11 +43,13 @@ var x = setInterval(function() {
       if (counter===3 && distance > 0){
             alert("Your quiz has been canceled  ");
            
+            document.getElementById("submiteman").click();
             // هقففل زرار الارسال
-            document.getElementById("submiteman").disabled = true;
-            document.forms[0].onsubmit = function (e){
-            e.preventDefault();
-            }
+            // document.getElementById("submiteman").disabled = true;
+            // document.forms[0].onsubmit = function (e){
+            // e.preventDefault();
+            // }
+            // Just call the .click method of the button
           }
       }
 
