@@ -8,6 +8,12 @@
 <br>
 <div class="container mt-5 pt-3">
   <h1 class="py-3 mx-auto ms-3" style="color: #0053cb;" >{{ course.title }}</h1>
+  <form method="get" class="row items-center text-primary fs-4">
+    <div class="relative col-5">
+    {{myFilter.form}}
+    </div>
+    <button type="submit" class="col-1 btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i>    Search</button>
+  </form>
   <section>
 <div class="table-responsive">
       <table class="table table-hover table-bordered">

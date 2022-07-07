@@ -6,6 +6,7 @@ from classroom.models import Course, Category,Grade
 from app_users.models import *
 from classroom.forms import NewCourseForm
 from .filters import *
+from assignment.filters import *
 
 # Create your views here.
 
@@ -191,9 +192,12 @@ def StudentSubmissions(request, course_id):
         return HttpResponseForbidden()
     else:
         grades = Grade.objects.filter(course=course)
+        myFilter=GradeFilter(request.GET,queryset=grades)
+        grades =myFilter.qs
         context = {
             'course': course,
             'grades': grades,
+            'myFilter': myFilter,
         }
     return render(request,'classroom/studentgrades.html', context)
 
