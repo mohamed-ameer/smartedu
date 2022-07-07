@@ -19,6 +19,7 @@ urlpatterns = [
 	path('categories/', Categories, name='categories'),
 	path('scheduale/', Scheduale, name='scheduale'),
 	path('leaderboard/', Leaderboard, name='leaderboard'),
+	path('leaderboardreverse/', Leaderboardreverse, name='leaderboardreverse'),
 	path('activity/', Activity, name='activity'),
 	path('categories/<category_slug>', CategoryCourses, name='category-courses'),
 	path('<course_id>/', CourseDetail, name='course'),
