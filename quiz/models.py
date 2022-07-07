@@ -24,8 +24,8 @@ class Quizzes(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=200,blank=True)
 	date = models.DateTimeField(auto_now_add=True)
-	due = models.DateField()
-	time_limit_mins = models.PositiveIntegerField()
+	start_time=models.DateTimeField()
+	end_time=models.DateTimeField()
 	questions = models.ManyToManyField(Question)
 
 	def __str__(self):

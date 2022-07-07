@@ -3,12 +3,11 @@ from quiz.models import Quizzes, Question, Answer
 from django.forms.widgets import NumberInput
 class NewQuizForm(forms.ModelForm):
 	title = forms.CharField(widget=forms.TextInput(attrs={'class': 'validate'}), required=True)
-	due = forms.DateField(widget=NumberInput(attrs={'type': 'date'}), required=True)
-	time_limit_mins = forms.IntegerField(max_value=360, min_value=10)
-
+	start_time=forms.DateTimeField(widget=NumberInput(attrs={'type': 'datetime-local'}), required=True)
+	end_time=forms.DateTimeField(widget=NumberInput(attrs={'type': 'datetime-local'}), required=True)
 	class Meta:
 		model = Quizzes
-		fields = ('title', 'due', 'time_limit_mins')
+		fields = ('title','start_time','end_time')
 
 
 class NewQuestionForm(forms.ModelForm):

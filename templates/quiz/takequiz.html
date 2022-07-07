@@ -12,12 +12,12 @@
               <td>{{ quiz.title }}</td>
             </tr>
             <tr>
-              <th>Submit Dead Time</th>
-              <td>{{ quiz.due }}</td>
+              <th>Submit start Time</th>
+              <td>{{ quiz.start_time | json_script:'starttime'}}</td>
             </tr>
             <tr>
-              <th>Time limit:</th>
-              <td>{{ quiz.time_limit_mins }}</td>
+              <th>Submit end Time</th>
+              <td>{{ quiz.end_time | json_script:'endtime'}}</td>
             </tr>
           </table>
          </div>
@@ -68,8 +68,11 @@
 let counter=0;
 
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2023 15:37:25").getTime();
-
+var starDate = JSON.parse(document.getElementById('starttime').textContent);
+var endDate = JSON.parse(document.getElementById('endtime').textContent);
+var v1 =new Date(starDate).getTime();
+var v2 =new Date(endDate).getTime();
+var countDownDate = v2-v1;
 // Update the count down every 1 second
 var x = setInterval(function() {
 
@@ -77,7 +80,7 @@ var x = setInterval(function() {
   var now = new Date().getTime();
   
   // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+  var distance = v2 - now -7198566;
   // console.log(distance); 
   // Time calculations for days, hours, minutes and seconds
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -86,14 +89,13 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML =   minutes + "m :" + seconds + "s ";
-    
+  document.getElementById("demo").innerHTML =   minutes + "m :" + seconds + "s "; 
   // If the count down is over, write some text 
-  if (distance < 0) {
+  if (minutes === 0 && seconds === 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-      document.getElementById("submiteman").disabled = true;
-    
+    // document.getElementById("demo").innerHTML = "EXPIRED";
+    // document.getElementById("submiteman").disabled = true;
+    document.getElementById("submiteman").click();
   }
      // if student leave page 
      document.onmouseleave= function (event){

@@ -18,12 +18,12 @@ def NewQuiz(request, course_id, module_id):
         form = NewQuizForm(request.POST)
         if form.is_valid():
             title = form.cleaned_data.get('title')
-            due = form.cleaned_data.get('due')
-            time_limit_mins = form.cleaned_data.get('time_limit_mins')
-            quiz = Quizzes.objects.create(user=user, title=title, due=due, time_limit_mins=time_limit_mins)
+            start_time = form.cleaned_data.get('start_time')
+            end_time = form.cleaned_data.get('end_time')
+            quiz = Quizzes.objects.create(user=user, title=title,start_time=start_time,end_time=end_time)
             module.quizzes.add(quiz)
             module.save()
-            QuizScheduale.objects.create(user=user,course=course,module=module,quiz=quiz,title=title,due=due)   
+            QuizScheduale.objects.create(user=user,course=course,module=module,quiz=quiz,title=title,start_time=start_time)   
             print('quiz scheduale done')         
             return redirect('new-question', course_id=course_id, module_id=module_id, quiz_id=quiz.id)
     else:

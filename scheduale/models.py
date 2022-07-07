@@ -20,7 +20,7 @@ class QuizScheduale(models.Model):
     module=models.ForeignKey(Module, on_delete=models.CASCADE)
     quiz=models.ForeignKey(Quizzes, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
-    due = models.DateField()
+    start_time=models.DateTimeField()
     def __str__(self):
         return self.title
 
