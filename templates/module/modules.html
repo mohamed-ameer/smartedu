@@ -31,18 +31,20 @@
         <section class="container ">
           <div class=" gx-5 unit">
             <div class="mx-auto d-flex flex-sm-wrap row gx-5 border-scandary  border-bottom mb-5">                
-            <h2 class=" col-8 pb-3" style="color: #0053cb;">Units:   </h2>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">              
+            <h2 class=" col pb-3" style="color: #0053cb;">Units:   </h2>
             {% if user.profile.user_type == 'teacher'%}
-            <a href="{% url 'new-module' course.id %}" class="col-1 btn btn-primary btn-floating rounded-circle mb-3 mx-3 p-3"><i class="fa-solid fa-plus"></i></a>
+              <a href="{% url 'new-module' course.id %}" class="col-1 btn btn-primary btn-floating rounded-circle mb-3 mx-3" style="width: 40px;height: 40px;"><i class="fa-solid fa-plus"></i></a>
+            </div>
             {% endif %}
             </div>
-            <!--collapse  -->
-            <div id="accordion">
+            <!--ameer collapse  -->
+            <!-- <div id="accordion">
             {% for module in course.modules.all %}
               <div class="card">
                 <div class="card-header" id="headingOne">
                   <h5 class="mb-0">
-                    <button class="btn btn-lg" data-toggle="collapse" data-target="#{{ module.title }}" aria-expanded="true" aria-controls="{{ module.title }}">
+                    <button class="btn btn-lg" data-toggle="collapse" type="button" data-target="#{{ module.title }}" aria-expanded="true" aria-controls="{{ module.title }}">
                       <h4 class="" style="color: #0053cb;"><i class="fa-solid fa-circle-chevron-down"></i>    {{ module.title }}</h4>
                       {% if user.profile.user_type == 'teacher'%}
                       <a class="btn btn-primary ms-2 btn-sm" href="{% url 'new-page' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Topic</a>
@@ -87,8 +89,56 @@
                 </div>
               </div>
               {% endfor %}
-            </div>        
+            </div>         -->
             <!-- endcollapse -->
+            <!-- eman collapse -->
+            {% for module in course.modules.all %}
+            <div class="mx-auto pb-2 gx-5 border-scandary  border rounded">
+            <button class="btn btn-white w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+              <h4 class="ms-2 py-3" style="color: #0053cb;">({{ forloop.counter }})   {{ module.title }} <i class="ms-5 ps-5 fa-solid fa-caret-down"></i>  </h4></button>              
+              <div class="collapse " id="collapseExample">
+              <div class="card card-body border-0 mt-3">                        
+              <div class="btn-group mb-2" role="group" aria-label="Basic outlined example">                            
+                {% if user.profile.user_type == 'teacher'%}
+                <a class="btn btn-primary ms-2 btn-sm" href="{% url 'new-page' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Topic</a>
+                <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-quiz' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Quiz </a>
+                <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-quizai' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Quiz using AI </a>
+                <a class="btn btn-secondary ms-2 btn-sm" href="{% url 'new-assignment' course.id module.id %}" role="button"><i class="fa-solid fa-circle-plus"></i> Add new Assignment</a>
+                {% endif %} 
+              </div>
+              <!-- list  -->
+                   <div>
+                    <ol class="list-group list-group-numbered">
+                    {% for page in module.pages.all %}
+                    <li class="list-group-item">
+                      <a href="{% url 'page-detail' course.id module.id page.id %}" class="py-5 me-5"><i class="fa-solid fa-book"></i>{{ page.title }}</a>
+                      {% if page.id in page_completions %}Completed:<i class="fa-solid fa-circle"></i>{% else %}not Completed:<i class="fa-regular fa-circle"></i>{% endif %}              
+                    </li>  
+                    {% endfor %}
+                    </ol>
+                    <ol class="list-group list-group-numbered">
+                    {% for quiz in module.quizzes.all %}
+                    <li class="list-group-item">
+                      <a href="{% url 'quiz-detail' course.id module.id quiz.id %}" class=""><i class="fa-brands fa-quora"></i>   {{ quiz.title }}</a>
+                      {% if quiz.id in quiz_completions %}Completed:<i class="fa-solid fa-circle"></i>{% else %}not Completed:<i class="fa-regular fa-circle"></i>{% endif %}                  
+                    </li>  
+                    {% endfor %}
+                    </ol>
+                    <ol class="list-group list-group-numbered">
+                    {% for assignment in module.assignments.all %}
+                    <li class="list-group-item">
+                      <a href="{% url 'assignment-detail' course.id module.id assignment.id %}" class=""><i class="fa-brands fa-adversal"></i>   {{ assignment.title }}</a>
+                      {% if assignment.id in assignment_completions %}Completed:<i class="fa-solid fa-circle"></i>{% else %}not Completed:<i class="fa-regular fa-circle"></i>{% endif %}                  
+                    </li>  
+                    {% endfor %}
+                    </ol>
+                   </div> 
+              <!--  -->
+              </div>
+              </div>
+            </div>
+            {% endfor %}
+            <!-- endeman collapse -->
             <!-- start -->
 
             <!-- {% for module in course.modules.all %}
