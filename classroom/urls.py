@@ -25,6 +25,7 @@ urlpatterns = [
 	path('<course_id>/', CourseDetail, name='course'),
 	path('<course_id>/enroll', Enroll, name='enroll'),
 	path('<course_id>/edit', EditCourse, name='edit-course'),
+	path('<course_id>/deletewarning', DeleteCourseWarning, name='delete-course-warning'),
 	path('<course_id>/delete', DeleteCourse, name='delete-course'),
 	# #Modules
 	path('<course_id>/modules', CourseModules, name='modules'),

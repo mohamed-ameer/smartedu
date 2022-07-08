@@ -48,7 +48,7 @@ def NewAssignment(request, course_id, module_id):
             if form.is_valid():
                 title = form.cleaned_data.get('title')
                 points = form.cleaned_data.get('points')
-                due = form.cleaned_data.get('due')
+                dead_time = form.cleaned_data.get('dead_time')
                 assignment_type = form.cleaned_data.get('assignment_type')
                 language_type = form.cleaned_data.get('language_type')
                 # files = request.FILES.getlist('files')
@@ -57,11 +57,11 @@ def NewAssignment(request, course_id, module_id):
                 #     file_instance.save()
                 #     files_objs.append(file_instance)
                 file = request.FILES.get('file')
-                a = Assignment.objects.create(title=title, points=points,file=file,assignment_type=assignment_type ,language_type=language_type,due=due, user=user)
+                a = Assignment.objects.create(title=title, points=points,file=file,assignment_type=assignment_type ,language_type=language_type,dead_time=dead_time, user=user)
                 # a.files.set(files_objs)
                 a.save()
                 module.assignments.add(a)
-                AssignmentScheduale.objects.create(user=user,course=course,module=module,assignment=a,title=title,due=due)
+                AssignmentScheduale.objects.create(user=user,course=course,module=module,assignment=a,title=title,due=dead_time)
                 print('scheduale object done')
                 if a.assignment_type == 'Programming_File' and a.language_type == 'Java':
                     # marcoo functions

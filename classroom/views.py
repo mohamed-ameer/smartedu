@@ -115,6 +115,18 @@ def Enroll(request, course_id):
     return redirect('activity')
 
 @login_required
+def DeleteCourseWarning(request, course_id):
+    user = request.user
+    course = get_object_or_404(Course, id=course_id)
+
+    if user != course.user:
+        return HttpResponseForbidden()
+    else:
+        context = {
+        'course': course,
+        }
+    return render(request, 'classroom/deletewarning.html', context)
+@login_required
 def DeleteCourse(request, course_id):
     user = request.user
     course = get_object_or_404(Course, id=course_id)

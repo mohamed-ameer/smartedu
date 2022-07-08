@@ -37,11 +37,12 @@ class Assignment(models.Model):
     points = models.PositiveIntegerField()
     assignment_type = models.CharField(max_length=30, choices=assignment_type, default='Regular_File')
     language_type = models.CharField(max_length=30, choices=language_type, default='None')
-    due = models.DateField()
+    dead_time=models.DateTimeField()
     # files = models.ManyToManyField(AssignmentFileContent)
     file = models.FileField(upload_to=user_directory_path, blank=True, null=True)   
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-
+    def get_file_name(self):
+        return os.path.basename(self.file.name)
     def __str__(self):
         return self.title
 

@@ -14,7 +14,7 @@
     <div class="mt-5 mb-3 row border  ms-4 border-light shadow p-3 bg-white rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
         <div class="col-6"><h5>Dr/{{assignment.user.username}} created a new assignment <span style="color: blue;"><a href="{% url 'assignment-detail' assignment.course.id assignment.module.id assignment.assignment.id %}" class=""><i class="fa-brands fa-adversal"></i>    {{ assignment.assignment.title }}</a></span></h5>        
            <i class=" fs-6 fa-solid fa-hourglass-start text-muted me-2"></i>
-           <p style="display: inline;" class="fst-italic fw-light text-muted">Deadtime | {{assignment.assignment.due}}</p>
+           <p style="display: inline;" class="fst-italic fw-light text-muted">Deadtime | {{assignment.assignment.dead_time}}</p>
         </div>
         <div class="col-3"></div>     
         <div class="col-3">
@@ -47,7 +47,11 @@
 
 </section>
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
 {% endblock %}
 {% block javascript %}
 <script type="text/javascript" src="Bootstrap/bootstrap-5.0.2-dist/js/bootstrap.js"></script>

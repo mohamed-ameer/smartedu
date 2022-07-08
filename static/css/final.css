@@ -1,0 +1,16 @@
+.nav-item > a:hover, .nav-item > a:focus {
+    background-color: #cdd9ee;;
+    color: #fff;
+  }
+  .Mpointer:hover, .Mpointer:focus {
+    color: #0053cb;
+    cursor: pointer;
+  }
+  .Scehdulediv:hover, .Scehdulediv:focus {
+    color: #0053cb;
+    cursor: pointer;
+  }
+  #demo{
+  
+  color: red;
+  }

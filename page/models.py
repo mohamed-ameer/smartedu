@@ -25,7 +25,8 @@ class Page(models.Model):
     # files = models.ManyToManyField(PostFileContent)
     file = models.FileField(upload_to=user_directory_path, blank=False)   
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='page_owner')
-
+    def get_file_name(self):
+        return os.path.basename(self.file.name)
     def __str__(self):
         return self.title
 

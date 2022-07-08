@@ -18,12 +18,12 @@ class NewAssignmentForm(forms.ModelForm):
     assignment_type = forms.ChoiceField(required=True, choices=assignment_type)
     language_type = forms.ChoiceField(required=True, choices=language_type)
     points = forms.IntegerField(max_value=100, min_value=1)
-    due = forms.DateField(widget=NumberInput(attrs={'type': 'date'})) 
+    dead_time=forms.DateTimeField(widget=NumberInput(attrs={'type': 'datetime-local'}), required=True)
     # files = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=False)
     file = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': False}), required=False)
     class Meta:
         model = Assignment
-        fields = ('title', 'points','assignment_type','language_type', 'due', 'file')
+        fields = ('title', 'points','assignment_type','language_type', 'dead_time', 'file')
 
 class NewSubmissionForm(forms.ModelForm):
     file = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': False}), required=True)
