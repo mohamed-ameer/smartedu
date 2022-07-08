@@ -4,42 +4,39 @@
 
 {% block content %}
  
-<section class="container position-relative my-5 pt-5 pb-5 ">
+<section class="container position-relative my-5 pt-5 pb-5">
    
-<div aria-label="breadcrumb mb-5">
-      <h1 class="mb-5 pt-2">Schedule</h1>
+<div class="mb-5 ">
+      <h1 class="mb-5 pt-2 mt-3">Schedule</h1>
       <!-- for -->
       {% for assignment in assignments %}
-      {% if user in assignment.course.enrolled.all  %}  
-    <div class="mt-5 mb-3 row border  ms-4 border-light shadow p-3 bg-white rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="col-6"><h5>Dr/{{assignment.user.username}} created a new assignment <span style="color: blue;"><a href="{% url 'assignment-detail' assignment.course.id assignment.module.id assignment.assignment.id %}" class=""><i class="fa-brands fa-adversal"></i>    {{ assignment.assignment.title }}</a></span></h5>        
+      {% if user in assignment.course.enrolled.all  %} 
+      <a href="{% url 'assignment-detail' assignment.course.id assignment.module.id assignment.assignment.id %}" class="mt-5 mb-3 row border Scehdulediv  ms-4 border-light shadow p-3 bg-white rounded text-decoration-none " >
+        <div class="col "> <h5>Dr/{{assignment.user.username}} created a new assignment <i class="fa-solid fa-file"></i>    {{ assignment.assignment.title }}</h5>        
            <i class=" fs-6 fa-solid fa-hourglass-start text-muted me-2"></i>
-           <p style="display: inline;" class="fst-italic fw-light text-muted">Deadtime | {{assignment.assignment.dead_time}}</p>
+         <p style="display: inline;" class="fst-italic fw-light text-muted" >Deadtime | {{assignment.assignment.dead_time}}</p>
         </div>
-        <div class="col-3"></div>     
-        <div class="col-3">
+        <div class="col ms-5">
             <div class="rounded-pill  me-5 d-flex align-items-center bg-light  text-primary mt-3">
                 <p class="mx-auto my-auto py-1">{{assignment.course.title}}</p>
             </div>
         </div>
-    </div>
+      </a>
     {% endif %}
     {% endfor %}
     {% for quize in quizes %}
     {% if user in quize.course.enrolled.all  %}
-    <div class="mt-5 mb-3 row border  ms-4 border-light shadow p-3 bg-white rounded"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <div class="col-6"><h5>Dr/{{quize.user.username}} created a new Quiz <span style="color: blue;"><a href="{% url 'quiz-detail' quize.course.id quize.module.id quize.quiz.id %}" class=""><i class="fa-brands fa-quora"></i>   {{ quize.quiz.title }}</a></span></h5>        
+    <a href="{% url 'quiz-detail' quize.course.id quize.module.id quize.quiz.id %}" class="mt-5 mb-3 row border Scehdulediv  ms-4 border-light shadow p-3 bg-white rounded text-decoration-none " >
+        <div class="col "> <h5>Dr/{{quize.user.username}} created a new Quiz <i class="fa-solid fa-circle-question"></i>    {{ quize.quiz.title }}</h5>        
            <i class=" fs-6 fa-solid fa-hourglass-start text-muted me-2"></i>
-           <p style="display: inline;" class="fst-italic fw-light text-muted" >Start time | {{quize.start_time}}</p>
+         <p style="display: inline;" class="fst-italic fw-light text-muted" >Start time | {{quize.start_time}}</p>
         </div>
-        <div class="col-3"></div>
-     
-        <div class="col-3">
+        <div class="col ms-5">
             <div class="rounded-pill  me-5 d-flex align-items-center bg-light  text-primary mt-3">
                 <p class="mx-auto my-auto py-1">{{quize.course.title}}</p>
             </div>
         </div>
-    </div>
+    </a>
     {% endif %}
     {% endfor %}
     <!-- endfor -->
