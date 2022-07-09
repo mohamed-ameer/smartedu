@@ -213,8 +213,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'smarteduteam88@gmail.com'
-EMAIL_HOST_PASSWORD = 'asdfzxcv159753'
-DEFAULT_FROM_EMAIL = 'SmartEDU Team <smarteduteam88@gmail.com>'
+EMAIL_HOST_PASSWORD = 'panbdvgbtkoxlljp'
+
+# ,XEm7V,z:x,RfFf
+# in-v3.mailjet.com
+# EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
+# EMAIL_HOST = 'in-v3.mailjet.com'
+# MAILJET_API_KEY = "38708dc6c63eab996f7294ddc1384f1a"
+# MAILJET_API_SECRET = "bade16bfa393bd9097f4d6570e785e24"
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# EMAIL_TIMEOUT = 30
+# DEFAULT_FROM_EMAIL = 'mohamed ameer <smarteduteam88@gmail.com>'
