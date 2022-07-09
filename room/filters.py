@@ -4,4 +4,4 @@ from .models import *
 class RoomFilter(django_filters.FilterSet):
     class Meta:
         model = Room
-        fields=['user', 'name']
+        fields=['name',]

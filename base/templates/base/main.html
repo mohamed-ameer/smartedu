@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'Icon/fontawesome-free-6.1.1-web/css/all.css' %}">
     <link rel='stylesheet' type='text/css' media='screen' href="{% static 'styles/main.css' %}">
     <link rel="icon" href="{% static 'images/Logo.png' %}" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="{% static 'css/final.css' %}">
     <style>
         body { 
             background-color: #fcffff;
@@ -79,31 +80,23 @@
                         
                         {% if user.is_authenticated %}
                         <li class="nav-item  mx-3">
-                            <a class="nav-link text-muted" aria-current="page" href="{% url 'index' %}" target="_blank">Home</a>
+                            <a class="nav-link " aria-current="page" href="{% url 'index' %}" target="_blank">Home</a>
                         </li>
                         <li class="nav-item  mx-3">
-                            <a class="nav-link text-muted" href="{% url 'leaderboard'%}">Leaderboard</a>
+                            <a class="nav-link " href="{% url 'leaderboard'%}">Leaderboard</a>
                         </li>
                         {% endif %}
                     {% if user.profile.user_type == 'student' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
-                        <a class="nav-link text-muted" href="{% url 'all-courses'%}" target="_blank">Courses</a>
+                        <a class="nav-link " href="{% url 'all-courses'%}" target="_blank">Courses</a>
                        </li>
                        <li class="nav-item  mx-3">
-                           <a class="nav-link text-muted" href="{% url 'scheduale'%}" target="_blank">Scheduale</a>
+                           <a class="nav-link " href="{% url 'scheduale'%}" target="_blank">Scheduale</a>
                        </li>
                        {% endif %}
                        {% if user.profile.user_type == 'teacher' or user.is_superuser %}                       
                        <li class="nav-item  mx-3">
-                           <a class="nav-link text-muted" href="{% url 'my-courses'%}" target="_blank">My Courses</a>
-                       </li>
-                       {% endif %}
-                       {% if user.profile.user_type == 'student' or user.profile.user_type == 'teacher' or user.is_superuser %}
-                       <li class="nav-item  mx-3">
-                        <a class="nav-link text-muted" href="{% url 'chatzoom'%}" target="_blank">Start Meeting</a>
-                       </li>
-                       <li class="nav-item  mx-3">
-                        <a class="nav-link text-muted" href="{% url 'rooms'%}" target="_blank">ChatRooms</a>
+                           <a class="nav-link " href="{% url 'my-courses'%}" target="_blank">My Courses</a>
                        </li>
                        {% endif %}
                     </ul>
@@ -150,6 +143,9 @@
             </div>
         </nav>
     </header>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
