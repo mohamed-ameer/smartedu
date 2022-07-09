@@ -37,8 +37,21 @@
           <form method="post" class="form">
             <div class="form-group">
               {% csrf_token %}
-              {% bootstrap_form form %}
-              <input type="submit" value="Submit Response" class="btn btn-primary text-white btn-lg btn-block">
+            	<div class="form-group">
+					<label for="id_name">Your Name:</label>
+					<input type="text" name="name" class="form-control validate" placeholder="Name" title="" required id="id_name">
+				</div>
+				<div class="form-group">
+					<label for="id_email">Your Email:</label>
+					<input type="email" name="email" class="form-control" placeholder="Email" title="" required id="id_email">
+				</div>
+				<div class="form-group">
+					<label for="id_message">Your Message:</label>
+					<textarea name="message" cols="40" rows="10" class="form-control" placeholder="please if you have problem send your message and the admin will contact with you,so put your detail in this message like[username,email,Id]. Thankyou ❤  			📕If you are an instructor send your detail here and the admin will check your information and make you as an instructor." title="" required id="id_message"></textarea>
+				</div>
+              	<input type="submit" value="Submit Response" class="btn btn-primary text-white btn-lg btn-block">
+            	</div>
+              	<input type="submit" value="Submit Response" class="btn btn-primary text-white btn-lg btn-block">
             </div>
           </form>
 

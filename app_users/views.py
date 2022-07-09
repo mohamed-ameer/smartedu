@@ -1,3 +1,5 @@
+from cgitb import html
+from email import message
 from django.shortcuts import render, redirect, get_object_or_404
 from app_users.forms import UserForm, UserProfileInfoForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,8 +12,9 @@ from .filters import ProfileFilter
 from django.views.generic import CreateView
 from .forms import *
 from django.contrib.auth import update_session_auth_hash
-
-
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
 def NavInfo(request):
 	user = request.user
 	nav_profile = None
@@ -85,11 +88,43 @@ def register(request):
 class HomeView(TemplateView):
     template_name = 'app_users/index.html'
 
-class ContactView(CreateView):
-    model = Contact
-    fields = '__all__'
-    template_name = 'app_users/contact.html'
+# class ContactView(CreateView):
+#     model = Contact
+#     fields = '__all__'  
+#     template_name = 'app_users/contact.html'
 
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data.get('name')
+            email = form.cleaned_data.get('email')
+            message = form.cleaned_data.get('message')
+            Contact.objects.create(name=name, email=email, message=message)
+            html = render_to_string('app_users/contactsent.html',{'name':name,'email':email,'message':message})
+            # send_mail(
+            #     name,
+            #     message,
+            #     email,
+            #     [settings.EMAIL_HOST_USER],
+            # )
+            send_mail(
+            'Subject here',
+            'Here is the message.',
+            'from@example.com',
+            [settings.EMAIL_HOST_USER],
+            html_message=html,
+            )
+            return redirect('index')
+    else:
+        form = ContactForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request,'app_users/contact.html',context)
 
 def profile(request):
     profile = Profile.objects.get(user=request.user)

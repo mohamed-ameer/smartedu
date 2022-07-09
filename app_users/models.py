@@ -85,11 +85,11 @@ class Profile(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length=150)
-    email = models.CharField(max_length=150)
-    feedback = models.TextField()
+    email = models.EmailField()
+    message = models.TextField()
 
     def __str__(self):
-        return self.name
+        return self.email
 
     def get_absolute_url(self):
         return reverse('index')

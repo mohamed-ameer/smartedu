@@ -218,6 +218,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'smarteduteam88@gmail.com'
 EMAIL_HOST_PASSWORD = 'panbdvgbtkoxlljp'
 
+# https://www.youtube.com/watch?v=uVDq4VOBMNM&ab_channel=SysTools
+
 # ,XEm7V,z:x,RfFf
 # in-v3.mailjet.com
 # EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
