@@ -15,7 +15,7 @@ User._meta.get_field('email').null = False
 
 def user_directory_path_profile(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    profile_pic_name = 'user_{0}/profile.jpg'.format(instance.user.id)
+    profile_pic_name = 'user_{0}/{1}'.format(instance.user.id,filename)
     full_path = os.path.join(settings.MEDIA_ROOT, profile_pic_name)
 
     if os.path.exists(full_path):
@@ -25,7 +25,7 @@ def user_directory_path_profile(instance, filename):
 
 def user_directory_path_banner(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-    banner_pic_name = 'user_{0}/banner.jpg'.format(instance.user.id)
+    banner_pic_name = 'user_{0}/{1}'.format(instance.user.id,filename)
     full_path = os.path.join(settings.MEDIA_ROOT, banner_pic_name)
 
     if os.path.exists(full_path):
