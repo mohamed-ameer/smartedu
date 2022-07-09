@@ -3,11 +3,11 @@
 {%block title %}Scheduale{% endblock%}
 
 {% block content %}
- 
-<section class="container position-relative my-5 pt-5 pb-5">
-   
+<br> 
+<br>  
+<section class="container position-relative my-5 pt-5 pb-5">  
 <div class="mb-5 ">
-      <h1 class="mb-5 pt-2 mt-3">Schedule</h1>
+      <h1 class="mb-5 pt-2 ">Schedule</h1>
       <!-- for -->
       {% for assignment in assignments %}
       {% if user in assignment.course.enrolled.all  %} 

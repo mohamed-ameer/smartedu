@@ -10,21 +10,18 @@
       </div>
    <!-- copy -->
    <div class="container">
-    <div class="">
-      <form method="get" class="row items-center text-primary fs-4">
-        <div class="relative col-5">
-        {{myFilter.form}}
+    <div class="row mt-5">
+      <form method="get" class="col-11">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search By ID" aria-label="Search" aria-describedby="search-addon" name="college_id" id="id_college_id" />
+          <button type="submit" class="btn btn-outline-primary">search</button>
         </div>
-        <button type="submit" class="col-1 btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i>    Search</button>
       </form>
-      </div>
+    </div> 
     <div class="row mt-5">
       <div class="col-11">
-        <table
-        id="studentPoints"
-        class="table table-bordered table-condensed table-striped table-hover text-center align-middle"
-        >
-          <thead class="table-dark">
+        <table id="studentPoints" class="table table-bordered table-condensed table-striped table-hover text-center align-middle">
+          <thead class="table-white text-secondary">
             <tr>
               <th scope="col"></th>
               <th scope="col"></th>
@@ -34,10 +31,10 @@
               <th scope="col">Points</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="table-light">
           {% for profile in profiles %}
           {% if profile.user_type == 'student' %}
-            <tr class="table-row lineage">
+            <tr class="">
               <th scope="row">
                 {{ forloop.counter }}
               </th>

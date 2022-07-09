@@ -29,13 +29,15 @@
 <div class="col-md-8 mb-4">
 <div class="container mt-5 pt-3 row">
   <h2 class="py-3 mx-auto ms-3 col-7" style="color: #0053cb;" >Submissions</h2>
-  <form method="get" class="row col align-middle py-3 mx-auto fs-3 ">
-    <div class="relative text-primary col">
-    {{myFilter.form}}
-    </div>
+  <form method="get" class="col-11 row gx-2 mx-auto fs-3 ">
+    <select class="form-select col" aria-label="Default select example" name="status" id="id_status" style="width:40%;">
+      <option type="submit" selected>Open this select menu</option>
+      <option type="submit" value="pending">Pending</option>
+      <option type="submit" value="graded">Graded</option>
+    </select>
     <button type="submit" class="col-1 btn btn-primary px-2"><i class="fa-solid fa-magnifying-glass"></i></button>
   </form>
-<div class="mx-auto d-flex flex-sm-wrap row gx-5 ">                            
+<div class="mx-auto d-flex flex-sm-wrap row gx-5 mt-3">                            
 <div class="  mx-3 row border  border-light shadow bg-white rounded text-center">
 <div class="table-responsive">
 <table class="table table-hover">
