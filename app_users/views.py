@@ -15,6 +15,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+
 def NavInfo(request):
 	user = request.user
 	nav_profile = None
@@ -76,10 +77,11 @@ def register(request):
             registered = True
             return render(request, 'app_users/login.html')
         else:
-            print(user_form.errors, profile_form.errors)
+            # print(user_form.errors, profile_form.errors)
+            print(user_form.errors)
     else:
         user_form = UserForm()
-        profile_form = UserProfileInfoForm()
+        # profile_form = UserProfileInfoForm()
 
     # return render(request, 'app_users/registration.html',
     #                         {'registered':registered,
@@ -88,6 +90,7 @@ def register(request):
     return render(request, 'app_users/registration.html',
                             {'registered':registered,
                              'user_form':user_form,
+                             'captcha':FormWithCaptcha
                             })
 
 class HomeView(TemplateView):

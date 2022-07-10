@@ -1,7 +1,12 @@
+from typing_extensions import Required
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from app_users.models import Profile,Contact
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
+class FormWithCaptcha(forms.Form):
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(),required=True)
 
 class UserForm(UserCreationForm):
     email = forms.EmailField()

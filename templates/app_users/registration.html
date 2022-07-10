@@ -65,7 +65,8 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ user_form|crispy }}
-            {{ profile_form|crispy }}            
+            {{ profile_form|crispy }}  
+            {{captcha}}          
             <!-- <div class=" border border-2 border-light p-3 rounded rounded-5 my-3 form-check2 ">           
                 <input type="checkbox" class="form-check-input" id="#"required>
                 <label class=" opacity-75 form-check-label text-primary" for="#">You have read and agree our <a href="#" class=" fw-bold text-decoration-none"style="color: #0058e6;" >Privacy Policy</a> </label>
