@@ -236,5 +236,4 @@ EMAIL_HOST_PASSWORD = 'panbdvgbtkoxlljp'
 # https://www.youtube.com/watch?v=8GNc4Pz4is4&list=LL&index=1&ab_channel=DeveloperBishwas
 RECAPTCHA_PUBLIC_KEY = '6Ld4_dogAAAAAL1GBuJiJRWc1cwOiW4n0cVO6-mv'
 RECAPTCHA_PRIVATE_KEY = '6Ld4_dogAAAAAKDxYrgAhsBz8u5Et-rj-hgy6-k9'
-RECAPTCHA_REQUIRED_SCORE=0.85
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

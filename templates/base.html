@@ -132,6 +132,11 @@ background: linear-gradient(to right bottom, #0053cb, #90caf9)
                            <a class="nav-link" href="{% url 'my-courses'%}" target="_blank">My Courses</a>
                        </li>
                        {% endif %}
+                       {% if user.is_authenticated %}
+                       <li class="nav-item  mx-3">
+                           <a class="nav-link" aria-current="page" href="{% url 'contact' %}" target="_blank">Contact US</a>
+                       </li>
+                       {% endif %}
                     </ul>
                     {% if user.is_authenticated %}
                     <!-- <i class="fa-solid fa-bell pe-4 text-secondary"></i> -->
@@ -198,15 +203,13 @@ background: linear-gradient(to right bottom, #0053cb, #90caf9)
             </div>
             <div class="col-2 mt-3 ms-4">
                 <div class="row">
-                <a href="https://documenter.getpostman.com/view/19584619/UzJFwJhM" class="  mb-2 text-decoration-none text-white" target="_blank">APIs</a>
                 <a class="   text-decoration-none text-white">App store</a>
         
-        </div>
+                </div>
             </div>
             <div class="col-2 mt-3">
         <div class="row">
             <a class=" mb-2 text-decoration-none text-white">About us</a>
-            <a href="{% url 'contact' %}" class="  text-decoration-none text-white" target="_blank">Contact us</a>
         </div>
             </div>
         </div>
