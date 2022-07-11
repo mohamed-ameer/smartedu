@@ -88,7 +88,8 @@
             <div class="row text-secondary mx-5">
             <p class="col"><strong>{{ course.category }}</strong></p>
             <p class="col"><strong>{{ course.enrolled.count }} students</strong></p>
-        </div>
+            </div>
+            <p>course password:   <strong>{{ course.secret_code }}</strong></p>
             
             <a href="{% url 'course' course.id %}" class="btn btn-outline-primary fst-italic px-2">EDIT COURSE or ADD MATERIAl</a>
           </div>
