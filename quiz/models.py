@@ -33,6 +33,7 @@ class Quizzes(models.Model):
 
 class Attempter(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	course = models.ForeignKey(to='classroom.Course', on_delete=models.CASCADE)
 	quiz = models.ForeignKey(Quizzes, on_delete=models.CASCADE)
 	score = models.PositiveIntegerField()
 	completed = models.DateTimeField(auto_now_add=True)
@@ -42,7 +43,7 @@ class Attempter(models.Model):
 
 class Attempt(models.Model):
 	quiz = models.ForeignKey(Quizzes, on_delete=models.CASCADE)
-	attempter = models.ForeignKey(Attempter, on_delete=models.CASCADE)
+	attempter = models.ForeignKey(Attempter, on_delete=models.CASCADE)	
 	question = models.ForeignKey(Question, on_delete=models.CASCADE)
 	answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
 

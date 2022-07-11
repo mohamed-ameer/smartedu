@@ -225,7 +225,7 @@ def StudentQuizSubmissions(request, course_id):
     if user != course.user:
         return HttpResponseForbidden()
     else:
-        attempts = Attempter.objects.all()
+        attempts = Attempter.objects.filter(course=course)
         context = {
             'course': course,
             'attempts': attempts,

@@ -100,11 +100,12 @@ def TakeQuiz(request, course_id, module_id, quiz_id):
 def SubmitAttempt(request, course_id, module_id, quiz_id):
     user = request.user
     quiz = get_object_or_404(Quizzes, id=quiz_id)
+    course = get_object_or_404(Course, id=course_id)
     earned_points = 0
     if request.method == 'POST':
         questions = request.POST.getlist('question')
         answers = request.POST.getlist('answer')
-        attempter = Attempter.objects.create(user=user, quiz=quiz, score=0)
+        attempter = Attempter.objects.create(user=user, quiz=quiz,course=course,score=0)
 
         for q, a in zip(questions, answers):
             question = Question.objects.get(id=q)

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 import uuid
 
 # Create your models here.
-from module.models import Module
 from assignment.models import Submission
 from question.models import Question
 
@@ -61,7 +60,7 @@ class Course(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='course_owner')
 	# many courses can enrolled by many users(studebt)
 	enrolled = models.ManyToManyField(User)
-	modules = models.ManyToManyField(Module)
+	modules = models.ManyToManyField(to='module.Module')
 	questions = models.ManyToManyField(Question)
 	def __str__(self):
 		return self.title

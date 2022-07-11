@@ -9,7 +9,7 @@ from .filters import RoomFilter
 @login_required
 def rooms(request, course_id):
     course = get_object_or_404(Course, id=course_id)
-    rooms = Room.objects.all()
+    rooms = Room.objects.filter(course=course)
     myFilter=RoomFilter(request.GET,queryset=rooms)
     rooms =myFilter.qs
     return render(request, 'room/rooms.html', {'rooms': rooms,'course':course,'myFilter':myFilter})
@@ -28,7 +28,7 @@ def NewRoom(request,course_id):
         form = RoomForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data.get('name')
-            Room.objects.create(name=name,user=user)
+            Room.objects.create(name=name,user=user,course=course)
             return redirect('rooms', course_id=course_id)
     else:
         form = RoomForm()

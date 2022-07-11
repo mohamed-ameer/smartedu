@@ -35,3 +35,17 @@ python manage.py runserver
 =>python manage.py migrate
 =>python manage.py createsuperuser
 =>python manage.py runserver
+
+
+very important
+1-download from github
+2-delete venv,db.sqlite3,all migrations from all APPS
+3-go to models of module app then comment quizzes = models.ManyToManyField(to='quiz.Quizzes')
+3-go to models of classroom app then comment 	modules = models.ManyToManyField(to='module.Module')
+3-go to models of quiz app then comment course = models.ForeignKey(to='classroom.Course', on_delete=models.CASCADE)
+
+4-py manage.py makemigrations for each app
+5-uncomment what we commented in step 3
+5-py manage.py makemigrations classroom
+5-py manage.py makemigrations module
+5-py manage.py makemigrations quiz
