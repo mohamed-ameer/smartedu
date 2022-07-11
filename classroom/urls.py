@@ -56,6 +56,7 @@ urlpatterns = [
 	# #Submissions
 	path('<course_id>/submissions', Submissions, name='submissions'),
 	path('<course_id>/studentsubmissions', StudentSubmissions, name='student-submissions'),
+	path('<course_id>/studentquizsubmissions', StudentQuizSubmissions, name='student-quiz-submissions'),
 	path('<course_id>/submissions/<grade_id>/grade', GradeSubmission, name='grade-submission'),
 	#Questions
 	path('<course_id>/questions', Questions, name='questions'),

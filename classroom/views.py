@@ -7,7 +7,7 @@ from app_users.models import *
 from classroom.forms import NewCourseForm
 from .filters import *
 from assignment.filters import *
-
+from quiz.models import Attempter
 # Create your views here.
 
 @login_required
@@ -219,6 +219,18 @@ def StudentSubmissions(request, course_id):
             'myFilter': myFilter,
         }
     return render(request,'classroom/studentgrades.html', context)
+def StudentQuizSubmissions(request, course_id):
+    user = request.user
+    course = get_object_or_404(Course, id=course_id)
+    if user != course.user:
+        return HttpResponseForbidden()
+    else:
+        attempts = Attempter.objects.all()
+        context = {
+            'course': course,
+            'attempts': attempts,
+        }
+    return render(request,'classroom/studentquizgrades.html', context)
 
 def GradeSubmission(request, course_id, grade_id):
     user = request.user

@@ -24,6 +24,7 @@
         <h4 class="border-scandary border-bottom py-4"><a href="{% url 'questions' course.id %}" class="text-decoration-none row"><i class="fa-solid fa-circle-question col-4"></i>Questions</a></h4>
         {% if user.profile.user_type == 'teacher' %}
         <h4 class="border-scandary border-bottom py-4"><a href="{% url 'student-submissions' course.id %}"class="text-decoration-none row"><i class="fa-solid fa-chart-column col-4 "></i>Submissions</a></h4>
+        <h4 class="border-scandary border-bottom py-4"><a href="{% url 'student-quiz-submissions' course.id %}"class="text-decoration-none row"><i class="fa-solid fa-chart-column col-4 "></i>QuizSubmissions</a></h4>
         {% endif %}   
         <h4 class="border-scandary border-bottom py-4"><a href="{% url 'chatzoom'%}"class="text-decoration-none row"><i class="fa-solid fa-video col-4"></i>Start Meeting</a></h4>
         <h4 class="border-scandary border-bottom py-4"><a href="{% url 'rooms' course.id%}"class="text-decoration-none row"><i class="fa-solid fa-message col-4"></i>Chat Room</a></h4>
