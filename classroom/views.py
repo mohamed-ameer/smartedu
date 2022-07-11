@@ -117,7 +117,7 @@ def Enroll(request, course_id):
     if code == course.secret_code:
         course.enrolled.add(user)
     else:
-        return HttpResponse("Please use correct id and password")
+        return HttpResponse("Please enter the correct secret key of the course,if you don't know ask your instructor")
     return redirect('activity')
 
 @login_required
