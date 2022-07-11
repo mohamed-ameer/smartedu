@@ -52,6 +52,7 @@ class Course(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 	picture = models.ImageField(upload_to=user_directory_path)
 	title = models.CharField(max_length=200)
+	secret_code = models.CharField(max_length=300,unique=True,null=True)
 	description = models.CharField(max_length=300)
 	university = models.CharField(max_length=30, choices=university, default='Zagazig_University')
 	major_types = models.CharField(max_length=30, choices=major_types, default='electrical_engineering')
@@ -71,3 +72,5 @@ class Grade(models.Model):
 	points = models.PositiveIntegerField(default=0)
 	graded_by = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 	status = models.CharField(choices=STATUS_CHOICES, default='pending', max_length=10, verbose_name='Status')
+class Enroll(models.Model):
+	code = models.CharField(max_length=300)

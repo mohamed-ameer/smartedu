@@ -59,7 +59,12 @@
             {% if user in course.enrolled.all %}
             <a href="{% url 'course' course.id %}" class="btn btn-outline-primary ">Go To Course</a>
             {% else %}
-            <a href="{% url 'enroll' course.id %}" class="btn btn-outline-primary ">Enroll</a>
+            <form action="{% url 'enroll' course.id %}" method="POST">
+              {% csrf_token %}
+              <input type="text" name="code" placeholder="Enter the secret code of the course">
+              <input type="submit" value="Enroll">
+            </form>
+            <!-- <a href="{% url 'enroll' course.id %}" class="btn btn-outline-primary ">Enroll</a> -->
             {% endif %}
           </div>
         </div>            

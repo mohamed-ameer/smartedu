@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden,HttpResponse
 from app_users.models import Profile
 from classroom.models import Course, Category,Grade
 from app_users.models import *
@@ -75,9 +75,10 @@ def NewCourse(request):
         if form.is_valid():
             picture = form.cleaned_data.get('picture')
             title = form.cleaned_data.get('title')
+            secret_code = form.cleaned_data.get('secret_code')
             description = form.cleaned_data.get('description')
             category = form.cleaned_data.get('category')
-            Course.objects.create(picture=picture, title=title, description=description, category=category, user=user)
+            Course.objects.create(picture=picture, title=title,secret_code=secret_code,description=description, category=category, user=user)
             return redirect('my-courses')
     else:
         form = NewCourseForm()
@@ -111,7 +112,12 @@ def CourseDetail(request, course_id):
 def Enroll(request, course_id):
     user = request.user
     course = get_object_or_404(Course, id=course_id)
-    course.enrolled.add(user)
+    code=request.POST.get('code')
+    print(code)
+    if code == course.secret_code:
+        course.enrolled.add(user)
+    else:
+        return HttpResponse("Please use correct id and password")
     return redirect('activity')
 
 @login_required
@@ -152,6 +158,7 @@ def EditCourse(request, course_id):
             if form.is_valid():
                 course.picture = form.cleaned_data.get('picture')
                 course.title = form.cleaned_data.get('title')
+                course.secret_code = form.cleaned_data.get('secret_code')
                 course.description = form.cleaned_data.get('description')
                 course.category = form.cleaned_data.get('category')
                 course.save()
