@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden,HttpResponse
 from app_users.models import Profile
-from classroom.models import Course, Category,Grade
+from classroom.models import Course, Category,Grade,LeaderboardCourse
 from app_users.models import *
 from classroom.forms import NewCourseForm
 from .filters import *
@@ -116,6 +116,7 @@ def Enroll(request, course_id):
     print(code)
     if code == course.secret_code:
         course.enrolled.add(user)
+        LeaderboardCourse.objects.create(user=user,course=course)
     else:
         return HttpResponse("Please enter the correct secret key of the course,if you don't know ask your instructor")
     return redirect('activity')
@@ -246,6 +247,7 @@ def GradeSubmission(request, course_id, grade_id):
             grade.status = 'graded'
             grade.graded_by = user
             grade.save()
+            LeaderboardCourse.objects.get(user=grade.submission.user,course=course).modify_points(int(points))
             Profile.objects.get(pk=grade.submission.user.id).modify_points(int(points))
             return redirect('student-submissions', course_id=course_id)
     context = {

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-from classroom.models import Course
+from classroom.models import Course,LeaderboardCourse
 from quiz.forms import NewQuizForm, NewQuestionForm
 from quiz.models import Answer, Question, Quizzes, Attempter, Attempt
 from module.models import Module
@@ -117,6 +117,7 @@ def SubmitAttempt(request, course_id, module_id, quiz_id):
                 attempter.score += earned_points
                 attempter.save()
         points = earned_points
+        LeaderboardCourse.objects.get(user=user,course=course).modify_points(points)
         Profile.objects.get(pk=user.id).modify_points(points)
         return redirect('quiz-detail',course_id=course_id,module_id=module_id,quiz_id=quiz_id)
 

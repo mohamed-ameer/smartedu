@@ -6,7 +6,7 @@ from assignment.forms import NewAssignmentForm, NewSubmissionForm
 from assignment.models import AssignmentFileContent, Assignment, Submission
 from app_users.models import Profile
 from module.models import Module
-from classroom.models import Course, Grade
+from classroom.models import Course, Grade,LeaderboardCourse
 from completion.models import Completion
 from scheduale.models import AssignmentScheduale
 # marcoo
