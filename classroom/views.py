@@ -56,6 +56,13 @@ def Leaderboardreverse(request):
         'profiles': profiles,'myFilter':myFilter
     }
     return render(request, 'classroom/Leaderboardreverse.html', context)
+def Leaderboardeachcourse(request,course_id):
+    course = get_object_or_404(Course, id=course_id)
+    leaders =LeaderboardCourse.objects.all().filter(course=course).order_by("-points")
+    context = {
+        'leaders': leaders,'course': course
+    }
+    return render(request, 'classroom/Leaderboardcourse.html', context)
 
 def CategoryCourses(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
