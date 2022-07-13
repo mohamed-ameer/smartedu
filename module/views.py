@@ -12,7 +12,6 @@ from completion.models import Completion
 def NewModule(request, course_id):
 	user = request.user
 	course = get_object_or_404(Course, id=course_id)
-
 	if user != course.user:
 		return HttpResponseForbidden()
 	else:
@@ -26,12 +25,10 @@ def NewModule(request, course_id):
 				return redirect('modules', course_id=course_id)
 		else:
 			form = NewModuleForm()
-
 	context = {
 		'form': form,
 		'course': course
 	}
-
 	return render(request, 'module/newmodule.html', context)
 
 
@@ -42,21 +39,12 @@ def CourseModules(request, course_id):
 	page_completions = Completion.objects.filter(user=user, course=course).values_list('page__pk', flat=True)
 	quiz_completions = Completion.objects.filter(user=user, course=course).values_list('quiz__pk', flat=True)
 	assignment_completions = Completion.objects.filter(user=user, course=course).values_list('assignment__pk', flat=True)
-
-	# # teacher_mode = False
-	# user_type = 'student'
-	# if user == course.user:
-	# 	# teacher_mode = True
-	# 	user_type = 'teacher'
-
 	context = {
-		# 'user_type': user_type,
 		'profile': profile,
 		'course': course,
 		'page_completions': page_completions,
 		'quiz_completions': quiz_completions,
 		'assignment_completions': assignment_completions,
 	}
-
 	return render(request, 'module/modules.html', context)
 
